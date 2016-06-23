@@ -9,16 +9,21 @@ class SessionsController < ApplicationController
 
   def create
 
-    email = params[:email]
-    password = params[:password]
+    using_omniauth = false
 
-    @user = User.find_by_email(email)
+    if params[:uid] && params[:provider]
+      @user = create_new_user_from_uid(params[:uid], params[:provider])
+      using_omniauth = true
+    else
+      email = params[:email]
+      password = params[:password]
+      @user = User.find_by_email(email)
+    end
 
-    if @user && @user.authenticate(password)
+    if using_omniauth || (!using_omniauth && @user && @user.authenticate(password))
       session[:user_id] = @user.id
       puts request.referrer
       redirect_to(root_path, notice: "Welcome to Milieu")
-      # (request.referrer == new_session_path) ? redirect_to(root_path, notice: "Welcome to Milieu") : redirect_to(request.referrer, notice: "Welcome to Milieu")
     else
       redirect_to new_session_path, alert: "Could not sign in, try again"
     end
@@ -30,6 +35,15 @@ class SessionsController < ApplicationController
   end
 
   private
+
+      def create_new_user_from_uid(uid, provider)
+        user = User.find_by_uid(uid)
+        unless user
+          user = User.new(uid: uid, provider: provider)
+          user.save!(:validate => false)
+        end
+        user
+      end
 
       def update_activity_time
         session[:expires_at] = 24.hours.from_now
