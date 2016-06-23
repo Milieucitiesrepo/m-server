@@ -8,7 +8,7 @@
       <li class="overshadow"><%= link_to t('nav_bar.about_link_text'), "http://about.milieu.io", title: "About Us" %></li>
       <li class="overshadow"><%= link_to "Launch Consultation", "#", title: "Launch Consultation - Coming Soon" %></li>
       <% if signed_in? %>
-      <li class="overshadow"><%= link_to  t('nav_bar.sign_out_text'), session_path(id: "nothing"), method: :delete, title: "Sign Out" %></li>
+      <li class="overshadow"><%= link_to  t('nav_bar.sign_out_text'), session_path(id: "nothing"), method: :delete, title: t('nav_bar.sign_out_text'), class: 'sign-out-button' %></li>
       <% else %>
       <li class="overshadow"><%= link_to t('nav_bar.sign_in_text'), "#sign-in-modal", title: "Sign In", class: "modal-trigger" %></li>
       <% end %>

@@ -9,10 +9,11 @@ class SessionsController < ApplicationController
 
   def create
 
+    auth_info = request.env['omniauth.auth']
     using_omniauth = false
 
-    if params[:uid] && params[:provider]
-      @user = create_new_user_from_uid(params[:uid], params[:provider])
+    if auth_info.uid && auth_info.provider
+      @user = User.where(provider: auth_info['provider'], uid: auth_info['uid'].to_s).first || User.create_with_omniauth(auth_info)
       using_omniauth = true
     else
       email = params[:email]
