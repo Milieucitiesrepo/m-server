@@ -37,15 +37,6 @@ class SessionsController < ApplicationController
 
   private
 
-      def create_new_user_from_uid(uid, provider)
-        user = User.find_by_uid(uid)
-        unless user
-          user = User.new(uid: uid, provider: provider)
-          user.save!(:validate => false)
-        end
-        user
-      end
-
       def update_activity_time
         session[:expires_at] = 24.hours.from_now
       end
