@@ -38,5 +38,17 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def self.create_with_omniauth(auth)
+    user = new do |user|
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      if auth['info']
+         user.first_name = auth['info']['name'].split[0] || ""
+         user.last_name = auth['info']['name'].split[1] || ""
+         user.email = auth['info']['email'] || ""
+      end
+    end
+    user.save!(:validate => false)
+    user
+  end
 end

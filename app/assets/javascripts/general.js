@@ -61,4 +61,12 @@ $(document).on('page:change', function(){
     $('.datepicker').pickadate();
   });
 
+  $('.sign-out-button').click(function(){
+    FB.getLoginStatus(function(response) {
+      if (response.authResponse){
+        FB.logout();
+      };
+    });
+  });
+
 });

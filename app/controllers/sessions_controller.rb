@@ -9,16 +9,22 @@ class SessionsController < ApplicationController
 
   def create
 
-    email = params[:email]
-    password = params[:password]
+    auth_info = request.env['omniauth.auth']
+    using_omniauth = false
 
-    @user = User.find_by_email(email)
+    if auth_info.uid && auth_info.provider
+      @user = User.where(provider: auth_info['provider'], uid: auth_info['uid'].to_s).first || User.create_with_omniauth(auth_info)
+      using_omniauth = true
+    else
+      email = params[:email]
+      password = params[:password]
+      @user = User.find_by_email(email)
+    end
 
-    if @user && @user.authenticate(password)
+    if using_omniauth || (!using_omniauth && @user && @user.authenticate(password))
       session[:user_id] = @user.id
       puts request.referrer
       redirect_to(root_path, notice: "Welcome to Milieu")
-      # (request.referrer == new_session_path) ? redirect_to(root_path, notice: "Welcome to Milieu") : redirect_to(request.referrer, notice: "Welcome to Milieu")
     else
       redirect_to new_session_path, alert: "Could not sign in, try again"
     end
