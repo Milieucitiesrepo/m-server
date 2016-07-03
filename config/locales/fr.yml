@@ -17,8 +17,8 @@ fr:
       ward-number: 'Numéro du quartier:'
       votes: 'Votes:'
       status-box:
-        status: 'État d'avancement:'
-        status-date: 'Date d'état'
+        status: "État d'avancement:"
+        status-date: "Date d'état"
       contact-planner-text: 'Envoyez au responsable du dossier:'
       contact-councillor-text: 'Contactez votre conseiller:'
       description-label: 'Description'
@@ -59,7 +59,7 @@ fr:
     sign_in_text: 'Connexion'
     contact_us_text: 'Contactez Milieu'
   home:
-    title: "Ce qui est en cours de construction dans mon quartier?"
+    title: "Qu'est-ce qui est en construction dans mon quartier?"
     subtitle:
       p1: 'Façonner la vision de votre quartier en commentant et en votant sur les projets de développement'
       p2: 'Simplifier la participation du public en lançant votre propre consultation'
