@@ -3,7 +3,7 @@ en:
     filter-section:
       main-label: 'Filter Neighbourhood'
       neighbourhood-dropdown-label: 'Neighbourhood'
-      filter-status-label: ' Legend'
+      filter-status-label: 'Legend'
       participate-label: 'Current public consultations'
       learn-label: 'New urban development applications'
       discuss-label: 'Vacant and derelict sites'
