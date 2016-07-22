@@ -3,11 +3,11 @@ en:
     filter-section:
       main-label: 'Filter Neighbourhood'
       neighbourhood-dropdown-label: 'Neighbourhood'
-      filter-status-label: 'Filter Status'
-      participate-label: 'Participate in current public consultations'
-      learn-label: 'Learn more about new urban developments'
-      discuss-label: 'Start a discussion around vacant and derelict sites'
-      explore-label: 'Explore community events'
+      filter-status-label: 'Legend'
+      participate-label: 'Current public consultations'
+      learn-label: 'New urban development applications'
+      discuss-label: 'Vacant and derelict sites'
+      explore-label: 'Community events'
   dev-sites:
     show:
       back-to-map-link: 'Back to Map'
@@ -63,7 +63,7 @@ en:
     subtitle:
       p1: 'Shape the vision of your neighborhood by commenting and voting on development projects'
       p2: 'Simplify public engagement by launching your own consultation'
-    search_bar_text: 'Enter an address'
+    search_bar_text: 'Search an address'
     featured: 'Featured Developments'
     terms_of_use_link: "Terms of Use"
     privacy_policy_link: "Privacy Policy"
