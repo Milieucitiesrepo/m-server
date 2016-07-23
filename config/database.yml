@@ -1,0 +1,66 @@
+# # SQLite version 3.x
+# #   gem install sqlite3
+# #
+# #   Ensure the SQLite 3 gem is defined in your Gemfile
+# #   gem 'sqlite3'
+# #
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  host: localhost
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: milieu
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: milieu_test
+
+production:
+  <<: *default
+  database: milieu_production
+  username: rails
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+
+
+
+# default: &default
+#   adapter: postgresql
+#   database: milieuV2
+#   host: localhost
+#   username: postgres
+#   password: postgres
+#   pool: 5
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   port: 5432
+
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   <<: *default
+
+# production:
+#   <<: *default
+#   username: rails
+#   password: ym4wTc73f9
+#   port: 5432

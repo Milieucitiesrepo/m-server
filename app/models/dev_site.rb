@@ -45,7 +45,7 @@ class DevSite < ActiveRecord::Base
       @dev_sites = @dev_sites.where(ward_num: (User::VALID_NEIGHBOURHOOD_TYPES.index(filter_by) + 1))
     end
 
-    @dev_sites
+    @dev_sites.limit(150)
   end
 
   def marker
