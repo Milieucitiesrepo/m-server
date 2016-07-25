@@ -11,7 +11,7 @@ describe StaticPagesController do
       expect(ContactMailer).to(receive(:contact_milieu).with(message)).and_return(message_delivery)
       expect(message_delivery).to receive(:deliver_now)
       # when
-      post :contact_milieu, { contact_milieu: message }
+      post :contact_milieu, { contact_milieu: message, locale: :en }
     end
   end
 
@@ -25,7 +25,7 @@ describe StaticPagesController do
       expect(ContactMailer).to(receive(:contact_councillor).with(message)).and_return(message_delivery)
       expect(message_delivery).to receive(:deliver_now)
       # when
-      post :contact_councillor, { contact_councillor: message }
+      post :contact_councillor, { contact_councillor: message, locale: :en }
     end
   end
 
@@ -39,7 +39,7 @@ describe StaticPagesController do
       expect(ContactMailer).to(receive(:contact_file_lead).with(message)).and_return(message_delivery)
       expect(message_delivery).to receive(:deliver_now)
       # when
-      post :contact_file_lead, { contact_file_lead: message }
+      post :contact_file_lead, { contact_file_lead: message, locale: :en }
     end
   end
 end

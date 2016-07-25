@@ -12,7 +12,7 @@ describe SessionsController do
 
     describe "POST #create" do
       it "create session user id for user" do
-        post :create, { session: valid_attributes }
+        post :create, { session: valid_attributes, locale: :en }
         expect(session[:user_id].present?).to be_truthy
       end
      end
