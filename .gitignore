@@ -30,3 +30,6 @@ app/client/npm-debug.log*
 
 # Ignore public folder
 /public/assets
+
+#ignore socials oauth
+/config/initializers/social_oauth.rb

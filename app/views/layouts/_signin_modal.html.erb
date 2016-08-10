@@ -3,6 +3,11 @@
     <h1 class="center"><%= t('sign-in-modal.sign-in-modal-text') %></h4>
     <%= form_for :session, url: sessions_path, html: { class: 'login-form' } do |f| %>
       <div class="row">
+        <li><%= link_to 'Facebook', '/auth/facebook' %></li>
+        <li><%= link_to 'Twitter', '/auth/twitter' %></li>
+        <li><%= link_to 'Google+', '/auth/google' %></li>
+      </div>
+      <div class="row">
         <div class="input-field col s12">
           <%= f.label :email, t('sign-in-modal.email-label') %>
           <%= f.text_field :email, autocomplete: 'off' %>

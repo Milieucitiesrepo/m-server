@@ -27,13 +27,21 @@ gem 'handlebars_assets', '~> 0.23'
 gem 'hiredis', '~> 0.6.1'
 gem 'carrierwave', '~> 0.10', github: 'carrierwaveuploader/carrierwave'
 gem 'fog', '~> 1.38'
-gem 'rmagick', '~> 2.15.4', :require => 'RMagick'
+#gem 'rmagick', '~> 2.15.4', :require => 'RMagick'
 gem 'figaro', '~> 1.1.1'
 gem 'react-rails', '~> 1.6.2'
 gem 'ajax-autocomplete-rails', '~> 0.1.1'
 gem 'font-awesome-rails', '~> 4.5'
 gem 'rollbar'
 gem 'skylight'
+gem 'httparty'  # Makes http fun again (http client)
+
+#omniauth gems
+gem 'therubyracer' 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'cancancan', '~> 1.15.0'
 gem 'rolify', '~> 5.1.0'
@@ -51,7 +59,7 @@ group :development, :test do
   gem 'launchy'
   gem 'puma'
   # DEVELOMENT specific gems
-  gem 'spring', '~> 1.6.4'
+  gem "spring", group: :development
   gem 'brakeman', :require => false
   gem "better_errors"
   gem "binding_of_caller"

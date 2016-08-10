@@ -15,6 +15,13 @@ Rails.application.routes.draw do
       post 'contact_councillor'
     end
 
+    #omniauth 
+    #get 'auth/facebook', as: "auth_provider"
+    get 'auth/:facebook/callback', to: 'sessions#create'
+    get 'auth/:twitter/callback', to: 'sessions#create'
+    get 'auth/:google/callback', to: 'sessions#create'
+
+    
     resources :dev_sites do
       resources :comments, module: :dev_sites do
       end

@@ -1,0 +1,11 @@
+development:    #omniauth 
+  fb_id: 1699137120339326
+  fb_secret: ca23a85d87ca945755a2013ddb82ab81
+
+  #tt = twitter
+  tt_id: 9YbocdEiRlwV0eH6Bq447lZml
+  tt_secret: 7flbKa6ZuEQb3CY7LuVqDFyNcz70cR5NfU8UzzFM3OaNJaU5UJ
+
+  #g+
+  g_id: 902948404522-p216n0p4t731oqaliu9jtiuvb0pkrptn.apps.googleusercontent.com
+  g_secret: PAS4O7dgpHG7TOSuYaWFRLbB

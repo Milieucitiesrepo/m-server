@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :login
 
   def index
     @users = User.all
     respond_to do |format|
       format.html
       format.json { render json: @users.to_json }
+    end
+  end
+
+  def login
+    user_info, access_token = Omniauth::Facebook.authenticate(params['code'])
+    if user_info['email'].blank?
+      Omniauth::Facebook.deauthorize(access_token)  
     end
   end
 
