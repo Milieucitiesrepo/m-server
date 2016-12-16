@@ -111,7 +111,7 @@ fr:
       statement006: "6. You can choose to delete your account at any time by contacting us and requesting your account be deleted. Deleted information will not be accessible on Milieu, but people may still be able to access comment submissions through saved screenshots or caches. Comment submissions may still be included in reports and analysis arising from the initial submission prior to account deletion."
       statement007: "7. Feedback which you provide to Milieu on a proposed development will result in data collection which is specific to the proposed development in question."
       statement008: "8. We may share information with our clients in order to help them with urban planning research."
-      statement009: "9. We will not share your personal information with advertisers."
+      statement009: "9. From time to time, Milieu may analyze comment data and issue data reports. These reports will not feature the names or personal information of Milieu users."
       statement010: "10. As part of signing up to milieu you agree to receive updates on Milieu by email or newsletter. You can choose to unsubscribe from our mailing list at anytime by contacting us or unsubscribing from the mailing list."
     log_data:
       title: "2. Log Data"
@@ -146,4 +146,4 @@ fr:
       statement001: "1. If you have any questions about this privacy policy please contact us at info@milieu.io  sincerely , the Milieu Team"
     change_log:
       title: "Change Log"
-      statement001: "August 17, 2016: Updated our Privacy Policy."
+      statement001: "August 26, 2016: Updated our Privacy Policy."
