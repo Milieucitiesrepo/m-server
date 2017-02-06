@@ -62,7 +62,7 @@ class DevSite < ActiveRecord::Base
     Resque.enqueue(NewDevelopmentNotificationJob, id) unless Rails.env.test?
   end
 
-  after_save :check_for_dead_links
+  after_save :prune_dead_links
 
   def self.search(search_params)
     @dev_sites = DevSite.all
