@@ -82,8 +82,8 @@ describe DevSite do
       @dev_site1.addresses << create(:address)
       @dev_site4.statuses << create(:status)
       @dev_site4.statuses << create(:status,
-                                                status_date: DateTime.current - 1.day,
-                                                status: 'Comment Period in Progress')
+                                     status_date: DateTime.current - 1.day,
+                                     status: 'Comment Period in Progress')
     end
 
     context 'no params passed' do
@@ -233,5 +233,9 @@ describe DevSite do
       expect(result[1]).to eq(dev_site3)
       expect(result[2]).to eq(dev_site1)
     end
+  end
+
+  describe '#prune_dead_links' do
+    # pending
   end
 end

@@ -24,3 +24,7 @@ set :output, "#{Whenever.path}/log/cron.log"
 every 1.day, at: '3:00 am' do
   rake 'sync_devsites'
 end
+
+every 1.week, at: '3:00 am' do
+  rake 'prune_recent_city_file_links'
+end
