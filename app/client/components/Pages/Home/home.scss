@@ -4,16 +4,40 @@
   padding: 2% 20% 5% 20%;
   box-sizing: border-box;
   position: relative;
-  box-shadow: 0 2px 6px 0 $gray;
   color: $black;
 
+  .headlineLink {
+    height: 70px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    padding-top: 20%;
+    margin-bottom: 0px;
+    padding: 0;
+    color:$dark-secondary-color;
+
+    @media #{$small-and-down} {
+      font-size: 36px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-position: below;
+    }
+
+    &:focus {
+      background-color: $accessibility;
+    }
+  }
 
   > div {
     height: 130px;
 
     > h1 {
-      height: 70px;
-      font-weight: 700;
+      height: 60px;
+      font-size: 36px;
+      font-weight: 300;
+      float: left;
       margin-bottom: 0px;
       padding: 0;
 
@@ -113,11 +137,11 @@
     font-size: 36px;
     text-align: center;
     position: relative;
-    font-weight: 700;
+    font-weight: 400;
     margin: 0;
 
     @media #{$small-and-down} {
-      font-size: 36px;
+      font-size: 24px;
     }
   }
 
@@ -152,7 +176,7 @@
 
 .guelphContainer{
   background-image: url('./images/guelph.png');
-  background-position: right;
+  background-position: top right;
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
@@ -165,10 +189,10 @@
     background: linear-gradient(45deg,  #a3c1b1 0%,#5791b4 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a3c1b1', endColorstr='#5791b4',GradientType=1 );
     padding: 6px 10px;
+    margin-bottom: 36px;
     font-weight: 400;
     font-size: 16px;
     text-shadow: none;
-    float:right;
     color: $white;
     display: inline-block;
 
@@ -180,6 +204,30 @@
 
     &:hover {
       box-shadow: 2px 2px 5px 0 $secondary-color;
+    }
+
+    &:focus {
+      background-color: $accessibility;
+    }
+  }
+
+  .cityLink {
+    height: 70px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    padding-top: 20%;
+    margin-bottom: 0px;
+    padding: 0;
+    color:$dark-secondary-color;
+
+    @media #{$small-and-down} {
+      font-size: 36px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-position: below;
     }
 
     &:focus {
@@ -239,7 +287,7 @@
   .title {
     padding: 25px 0;
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 400;
     color: $dark-secondary-color;
     text-align: center;
     margin: 0;

@@ -56,13 +56,12 @@ export default class Home extends Component {
         <Header />
         <div className={css.landingContainer}>
           <div>
-            <h1>Milieu</h1>
-            <h3>{i18n.heroText1}</h3>
+
+            <h1><a href='https://about.milieu.io' className={css.headlineLink}>Milieu, </a><span>{i18n.heroText1}</span></h1>
           </div>
           <br />
           <p>{i18n.heroText2}</p>
-          <a href='https://about.milieu.io/' className={css.signUpButton}>{i18n.launchProject}</a>
-
+          <a href='https://about.milieu.io/expertise' className={css.signUpButton}>{i18n.launchProject}</a>
         </div>
         <div className={css.searchContainer}>
           <h2 className={css.title}>{i18n.title}</h2>
@@ -71,9 +70,9 @@ export default class Home extends Component {
           </div>
         </div>
         <div className={css.guelphContainer}>
-            <a href='https://about.milieu.io/city-of-guelph' className={css.milieuCityTag}>Milieu City</a>
+          <a href='https://about.milieu.io/discover-milieu' className={css.milieuCityTag}> Disvcover Milieu City</a>
             <div>
-              <h1>Guelph, ON</h1>
+              <a href='https://about.milieu.io/city-of-guelph' className={css.cityLink} >Guelph, ON</a>
               <p>Residents and members of the community can find out what is being built, get informed, and stay engaged with the Municipality of Guelph, Ontario.</p>
             </div>
 
