@@ -21,8 +21,8 @@
     }
 
     &:hover {
-      text-decoration: underline;
-      text-underline-position: below;
+      text-decoration: none;
+      border-bottom: 3px solid;
     }
 
     &:focus {
@@ -43,6 +43,7 @@
 
       @media #{$small-and-down} {
         height: 50px;
+        font-size: 24px;
       }
     }
     > h3 {
@@ -73,31 +74,31 @@
     font-size: 16px;
 
     @media #{$small-and-down} {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
 
   .signUpButton {
-    background-color: $primary-color;
-    border-radius: 2px;
-    padding: 12px 20px;
     font-weight: 400;
     font-size: 16px;
     margin-top: 30px;
     margin-right: 40px;
     text-shadow: none;
-    color: $white;
+    text-decoration: none;
+    border-bottom: 1px solid;
+    color: $dark-secondary-color;
     display: inline-block;
 
     @media #{$small-and-down} {
-      margin-right: 20px;
-      padding: 12px 20px;
-      font-size: 16px;
+          font-size: 16px;
+
     }
 
     &:hover {
       opacity: 1;
-      box-shadow: 2px 2px 5px 0 $secondary-color;
+      font-weight: 700;
+      border-bottom: 2px solid;
+
     }
 
     &:focus {
@@ -182,6 +183,19 @@
   position: relative;
   padding: 2% 20% 20% 20%;
 
+
+  @media #{$medium-and-down} {
+    background-position: top right;
+    background-size: 700px auto;
+  }
+
+  @media #{$small-and-down} {
+    background-position: top right;
+    background-size: 700px auto;
+    height: 340px;
+
+  }
+
   .milieuCityTag {
     background: #a3c1b1;
     background: -moz-linear-gradient(45deg,  #a3c1b1 0%, #5791b4 100%);
@@ -226,8 +240,8 @@
     }
 
     &:hover {
-      text-decoration: underline;
-      text-underline-position: below;
+      text-decoration: none;
+      border-bottom: 3px solid;
     }
 
     &:focus {
@@ -239,6 +253,20 @@
     height: 130px;
     width: 50%;
     position:relative;
+
+    @media #{$medium-and-down} {
+      background-color: $white;
+      margin-top: 0;
+      padding: 5% 5% 10% 5%;
+      width: 80%;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    @media #{$small-and-down} {
+      padding: 5% 5% 15% 5%;
+
+    }
 
 
     > h1 {
@@ -293,7 +321,7 @@
     margin: 0;
 
     @media #{$small-and-down} {
-      font-size: 20px;
+      font-size: 24px;
     }
   }
 
