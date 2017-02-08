@@ -7,6 +7,7 @@
   box-shadow: 0 2px 6px 0 $gray;
   color: $black;
 
+
   > div {
     height: 130px;
 
@@ -147,6 +148,11 @@
       }
     }
   }
+}
+
+.guelphContainer{
+  background-image: url('./images/green-ottawa.png');
+  padding: 20vh 20px;
 }
 
 .featuredContainer {
