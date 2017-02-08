@@ -61,16 +61,23 @@ export default class Home extends Component {
           </div>
           <br />
           <p>{i18n.heroText2}</p>
-          <a href='http://about.milieu.io/' className={css.signUpButton}>{i18n.launchProject}</a>
+          <a href='https://about.milieu.io/' className={css.signUpButton}>{i18n.launchProject}</a>
+
         </div>
         <div className={css.searchContainer}>
           <h2 className={css.title}>{i18n.title}</h2>
           <div className={css.search}>
             <Autocomplete searchBtn callback={this.autocompleteCallback} placeholder={i18n.enterAddress} type='autocomplete' onSelect={this.handleAutocompleteSelect} frontPage={true}/>
-          </div>        
+          </div>
         </div>
         <div className={css.guelphContainer}>
-            <h1>Guelph</h1>
+            <a href='https://about.milieu.io/city-of-guelph' className={css.milieuCityTag}>Milieu City</a>
+            <div>
+              <h1>Guelph, ON</h1>
+              <p>Residents and members of the community can find out what is being built, get informed, and stay engaged with the Municipality of Guelph, Ontario.</p>
+            </div>
+
+
         </div>
         <div className={css.featuredContainer}>
           <h2 className={css.title}>{i18n.featuredDevelopments}</h2>
