@@ -73,7 +73,18 @@ export default class Home extends Component {
           <a href='https://about.milieu.io/discover-milieu' className={css.milieuCityTag}> Disvcover Milieu City</a>
             <div>
               <a href='https://about.milieu.io/city-of-guelph' className={css.cityLink} >Guelph, ON</a>
-              <p>Residents and members of the community can find out what is being built, get informed, and stay engaged with the Municipality of Guelph, Ontario.</p>
+              <p>{i18n.guelphDescription}</p>
+              <br />
+              <div className={css.partnerBlock}>
+              <h3>{i18n.guelphPartner}</h3>
+              <p>
+                <a href='http://guelph.ca/' className={css.partnerLink}>City of Guelph, </a>
+                <a href='http://www.innovationguelph.ca/' className={css.partnerLink}>  Innovation Guelph, </a>
+                <a href='http://www.guelphchamber.com/' className={css.partnerLink}>  Guelph Chamber of Commerce, </a>
+                <a href='http://codx.ca/' className={css.partnerLink}>  Canada’s Open Data Exchange, </a>
+                <a href='http://www.uoguelph.ca/cbase/' className={css.partnerLink}>  CBaSE, University of Guelph</a>
+              </p>
+            </div>
             </div>
 
 
