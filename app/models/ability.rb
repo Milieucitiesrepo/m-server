@@ -6,7 +6,9 @@ class Ability
 
     default_abilities
 
-    if user.has_role? :admin
+    organization_admin_abilities if user.has_role? :organization_admin
+
+    if user.admin?
       admin_abilities
     elsif !user.new_record?
       regular_user_abilities(user)
@@ -24,10 +26,16 @@ class Ability
     can :read, Conversation
     can :create, NewsletterSubscription
     can :create, CityRequest
+    can :index, Municipality
+    can :read, Organization
   end
 
   def admin_abilities
     can :manage, :all
+  end
+
+  def organization_admin_abilities
+    can :manage, Organization, memberships: { user: { id: user.id } }
   end
 
   def regular_user_abilities(user)

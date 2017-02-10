@@ -1,6 +1,7 @@
 module DevSites
   class CommentsController < ApplicationController
-    load_and_authorize_resource :comment
+    load_resource :dev_site
+    load_and_authorize_resource :comment, through: :dev_site
 
     def index
       @comments =  @comments.includes(:votes, :user)

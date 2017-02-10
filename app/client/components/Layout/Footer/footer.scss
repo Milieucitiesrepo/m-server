@@ -40,9 +40,6 @@
         &:hover {
           text-decoration: underline;
         }
-        &:focus{
-          background-color: $accessibility;
-        }
       }
     }
   }
@@ -54,9 +51,6 @@
 
     a {
       font-size: 20px;
-      &:focus{
-        background-color: $accessibility;
-      }
     }
   }
 

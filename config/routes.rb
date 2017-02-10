@@ -25,27 +25,36 @@ Rails.application.routes.draw do
     resources :conversations
     resources :newsletter_subscriptions, only: [:create]
     resources :city_requests, only: [:create]
+    resources :events
+    resources :municipalities, only: [:index]
+    resources :comments, only: [:index]
+    resources :sessions, only: [:new, :create, :destroy]
+
+    resources :users, param: :slug do
+      resource :profile, only: [:edit, :update, :show], module: :users
+      resource :notification, only: [:edit, :update, :show], module: :users
+      resources :votes, only: [:create, :destroy], module: :users
+    end
+
     resources :dev_sites do
       resources :comments, module: :dev_sites
     end
 
-    resources :events
-
-    resources :comments, only: [:index]
-    resources :users, param: :slug do
-      resource :profile, only: [:edit, :update, :show]
-      resource :notification, only: [:edit, :update, :show]
-      resources :votes, only: [:create, :destroy]
+    resources :organizations, only: [:index, :show, :create, :destroy] do
+      resources :memberships, only: [:create, :destroy], module: :organizations
+      resources :municipalities, only: [:update, :destroy], module: :organizations
+      resources :dev_sites, only: [:index], module: :organizations
     end
-    resources :sessions, only: [:new, :create, :destroy]
   end
 
   # Backend API Routing
   namespace :api do
     namespace :v1 do
       post '/login', to: 'authentication#authenticate'
-      #Authentication Example
-      resources :dev_sites, only: [:index]
+      resources :dev_sites, only: [:index] do
+        resources :comments, only: [:index, :show, :create, :update, :destroy], module: :dev_sites
+      end
+      resources :votes, only: [:create, :destroy]
     end
   end
 

@@ -127,9 +127,6 @@
     width: 25px;
     height: 25px;
     display: block;
-    &:focus{
-      background-color: $accessibility;
-    }
   }
 
   .like {
@@ -150,6 +147,20 @@
     height: 25px;
     display: block;
     cursor: pointer;
+  }
+
+  .featuredContainer {
+    align-items: center;
+    cursor: pointer;
+    font-size: 26px;
+
+    .featured {
+      color: $dark-primary-color;
+    }
+
+    .unfeatured {
+      color: $gray;
+    }
   }
 
   .delimiter {
@@ -360,10 +371,14 @@
   .content {
     box-sizing: border-box;
     padding: 20px;
+    padding-top: 10px;
+    height: 200px;
+    overflow: hidden;
 
     .address {
       font-weight: 700;
       font-size: 18px;
+      padding-top: 10px;
       padding-bottom: 15px;
       margin: 0;
     }
@@ -387,9 +402,12 @@
   width: 600px;
   height: 175px;
   display: flex;
-  border: 1px solid $gray;
+  border: 1px solid $light-gray;
   overflow: hidden;
   position: relative;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 10px;
 
   @media #{$small-and-down} {
     width: 100%;
@@ -433,6 +451,8 @@
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
+    height: calc(100% - 10px);
+    overflow: hidden;
 
     .address {
       font-weight: 700;

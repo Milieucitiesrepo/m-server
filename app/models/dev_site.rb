@@ -37,6 +37,8 @@ class DevSite < ActiveRecord::Base
     'Additions'
   ].freeze
 
+  belongs_to :municipality
+  belongs_to :ward
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :addresses, as: :addressable, dependent: :destroy
   has_one  :sentiment, as: :sentimentable, dependent: :destroy
@@ -48,11 +50,13 @@ class DevSite < ActiveRecord::Base
   accepts_nested_attributes_for :statuses, allow_destroy: true
   accepts_nested_attributes_for :likes, allow_destroy: true
 
-  validates :devID, uniqueness: { message: 'Dev Id must be unique' }
+  validates :devID,
+            uniqueness: { message: 'Development Id must be unique' },
+            presence: { message: 'Development Id is required' }
   validates :application_type, presence: { message: 'Application type is required' }
   validates :description, presence: { message: 'Description is required' }
-  validates :ward_name, presence: { message: 'Ward name is required' }
-  validates :ward_num, presence: { message: 'Ward number is required' }, numericality: true
+  validates :municipality_id, presence: { message: 'Municipality is required' }
+  validates :ward_id, presence: { message: 'Ward is required' }
 
   after_create do
     Resque.enqueue(NewDevelopmentNotificationJob, id) unless Rails.env.test?
@@ -68,9 +72,14 @@ class DevSite < ActiveRecord::Base
     @dev_sites
   end
 
+  def general_status
+    return if statuses.empty?
+    statuses.current.general_status
+  end
+
   def status
     return if statuses.empty?
-    statuses.order('status_date DESC').first.status
+    statuses.current.status
   end
 
   def status_date
@@ -97,6 +106,10 @@ class DevSite < ActiveRecord::Base
   def longitude
     return if addresses.empty?
     addresses.first.lon
+  end
+
+  def ward_name
+    ward.name if ward.present?
   end
 
   def image_url
@@ -171,7 +184,7 @@ class DevSite < ActiveRecord::Base
     end
 
     def query_search
-      query_params = [:year, :ward, :status]
+      query_params = [:municipality, :ward, :year, :status, :featured]
       query_params.each do |param|
         send("search_by_#{param}") if @search_params[param].present?
       end
@@ -193,8 +206,14 @@ class DevSite < ActiveRecord::Base
       @dev_sites.where!('extract(year from updated) = ?', @search_params[:year])
     end
 
+    def search_by_municipality
+      municipality = @search_params[:municipality]
+      @dev_sites.where!(municipalities: { name: municipality })
+    end
+
     def search_by_ward
-      @dev_sites.where!('lower(ward_name) = lower(?)', @search_params[:ward])
+      ward = @search_params[:ward]
+      @dev_sites.where!(wards: { name: ward })
     end
 
     def search_by_status
@@ -202,6 +221,10 @@ class DevSite < ActiveRecord::Base
         .where!("statuses.status_date = (select max(statuses.status_date) \
                  from statuses where statuses.dev_site_id = dev_sites.id)")
         .where!(statuses: { status: @search_params[:status] })
+    end
+
+    def search_by_featured
+      @dev_sites.where!(featured: true)
     end
   end
 end

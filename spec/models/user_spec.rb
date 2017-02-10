@@ -21,7 +21,7 @@ describe User do
   end
 
   describe 'friendly id slug methods' do
-    let(:new_user) { FactoryGirl.create(:user) }
+    let(:new_user) { create(:user) }
 
     describe '#email_mailbox' do
       it 'should return email mailbox' do

@@ -12,7 +12,7 @@ export default class Map extends Component {
     this.loadMap = () => this._loadMap();
     this.loadDevSites = () => this._loadDevSites();
     this.geoJsonBuilder = () => this._geoJsonBuilder();
-    mapboxgl.accessToken = 'pk.eyJ1IjoibXR1Y2swNjMiLCJhIjoiY2ltNXA0OHZhMDFub3RzbTR5b3NmbTR4bCJ9.WDWrgehrJIsDpt1BX5IASQ';
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWlsaWV1IiwiYSI6ImNpeW14aGV3eDAwMHAycXBuanQ3eWUwNWUifQ.RIvTNaYA_z_h1zo1Pfqupw';
   }
   shouldComponentUpdate(nextProps, nextState) {
     const { devSites, hoverdDevSiteId } = this.props;
@@ -47,7 +47,7 @@ export default class Map extends Component {
     const { latitude, longitude } = this.props;
     const map = this.map = new mapboxgl.Map({
       container: 'main-map',
-      style: 'mapbox://styles/mtuck063/cim8gs43500449lm1hv082tp2',
+      style: 'mapbox://styles/milieu/ciymxvkoc000g2sqerkujqsup',
       center: [longitude, latitude],
       zoom: 12.5
     });
@@ -97,7 +97,13 @@ export default class Map extends Component {
       }
     });
   }
+
   _geoJsonBuilder() {
+    const keys = {
+      'Active Development': 'activedev',
+      'Comment Period': 'commentopen',
+      'Comment Period Closed': 'inactivedev'
+    }
     return {
       type: 'geojson',
       data: {
@@ -113,16 +119,16 @@ export default class Map extends Component {
               id: `${devSite.id}`,
               title: devSite.title,
               address: devSite.address,
-              'marker-symbol': 'consultation',
+              'marker-symbol': keys[devSite.general_status],
               description: `<b>${devSite.street}</b>
-                            <br/>${replace(devSite.application_type, /coa/, 'Committee of Adjustment')}
-                            <br/>${devSite.status}`
+                            <br/>${devSite.general_status}`
             }
           }
         })
       }
     }
   }
+
   _loadDevSites() {
     const { map } = this;
     const { latitude, longitude } = this.props;
@@ -159,7 +165,7 @@ export default class Map extends Component {
       'type': 'fill',
       'source': 'guelph-wards',
       'paint': {
-        'fill-color': '#3E6880',
+        'fill-color': '#fff',
         'fill-opacity': 0.3
       }
     });
@@ -169,7 +175,7 @@ export default class Map extends Component {
       'type': 'line',
       'source': 'guelph-wards',
       'paint': {
-        'line-color': '#3E6880'
+        'line-color': '#3A7496'
       }
     });
 
@@ -178,7 +184,7 @@ export default class Map extends Component {
       'type': 'fill',
       'source': 'wards',
       'paint': {
-        'fill-color': '#3E6880',
+        'fill-color': '#fff',
         'fill-opacity': 0.3
       }
     });
@@ -188,7 +194,7 @@ export default class Map extends Component {
       'type': 'line',
       'source': 'wards',
       'paint': {
-        'line-color': '#3E6880'
+        'line-color': '#3A7496'
       }
     });
 

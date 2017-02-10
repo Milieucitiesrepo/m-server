@@ -18,8 +18,9 @@ export default class Select extends Component {
   }
   _handleSelected(selectedText) {
     const text = (selectedText === this.props.title ? null : selectedText);
+    const type = this.props.type || this.props.title;
     this.setState({ value: text });
-    this.props.onSelect(this.props.title, text);
+    this.props.onSelect(type, text);
     this.closeDropdown();
   }
   _handleKeyDown(e) {

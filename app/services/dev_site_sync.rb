@@ -6,29 +6,29 @@ module Services
 
     ROOT_URL = 'http://ottwatch.ca/api/devapps/'
     WARDS = {
-      '1' => 'ORLEANS',
-      '2' => 'INNES',
-      '3' => 'BARRHAVEN',
-      '4' => 'KANATA NORTH',
-      '5' => 'WEST CARLETON-MARCH',
-      '6' => 'STITTSVILLE',
-      '7' => 'BAY',
-      '8' => 'COLLEGE',
-      '9' => 'KNOXDALE-MERIVALE',
-      '10' => 'GLOUCESTER-SOUTHGATE',
-      '11' => 'BEACON HILL-CYRVILLE',
-      '12' => 'RIDEAU-VANIER',
-      '13' => 'RIDEAU-ROCKCLIFFE',
-      '14' => 'SOMERSET',
-      '15' => 'KITCHISSIPPI',
-      '16' => 'RIVER',
-      '17' => 'CAPITAL',
-      '18' => 'ALTA VISTA',
-      '19' => 'CUMBERLAND',
-      '20' => 'OSGOODE',
-      '21' => 'RIDEAU-GOULBOURN',
-      '22' => 'GLOUCESTER-SOUTH NEPEAN',
-      '23' => 'KANATA SOUTH'
+      '1' => 'Orleans',
+      '2' => 'Innes',
+      '3' => 'Barrhaven',
+      '4' => 'Kanata North',
+      '5' => 'West Carleton-March',
+      '6' => 'Stittsville',
+      '7' => 'Bay',
+      '8' => 'College',
+      '9' => 'Knoxdale-Merivale',
+      '10' => 'Gloucester-Southgate',
+      '11' => 'Beacon Hill-Cyrville',
+      '12' => 'Rideau-Vanier',
+      '13' => 'Rideau-Rockcliffe',
+      '14' => 'Somerset',
+      '15' => 'Kitchissippi',
+      '16' => 'River',
+      '17' => 'Capital',
+      '18' => 'Alta Vista',
+      '19' => 'Cumberland',
+      '20' => 'Osgoode',
+      '21' => 'Rideau-Goulbourn',
+      '22' => 'Gloucester-South Nepean',
+      '23' => 'Kanata South'
     }
 
     def initialize
@@ -45,7 +45,6 @@ module Services
       puts "Found and processed #{@counter} dev sites."
       puts '=========================================='
     end
-
 
     private
 
@@ -143,9 +142,7 @@ module Services
         devID: dev_site['devid'],
         received_date: dev_site['receiveddate'],
         updated: dev_site['updated'],
-        application_type: dev_site['apptype'],
-        ward_num: dev_site['ward'],
-        ward_name: WARDS[dev_site['ward']]
+        application_type: dev_site['apptype']
       }
     end
 
@@ -153,7 +150,10 @@ module Services
       {
         lat: address['lat'],
         lon: address['lon'],
-        street: address['addr'] + ', Ottawa, Ontario, Canada'
+        street: address['addr'],
+        city: 'Ottawa',
+        province_state: 'Ontario',
+        country: 'Canada'
       }
     end
 
@@ -189,6 +189,10 @@ module Services
         file_attrs = parse_file(file)
         app_site.city_files.build(file_attrs)
       end if dev_site['files'].present?
+
+      ottawa_municipality_id = Municipality.find_by(name: 'Ottawa').try(:id)
+      app_site.municipality_id = ottawa_municipality_id
+      app_site.ward_id = Ward.find_by(name: WARDS[dev_site['ward']], municipality_id: ottawa_municipality_id).try(:id)
     end
 
     def destroy_associations(current_dev_site)

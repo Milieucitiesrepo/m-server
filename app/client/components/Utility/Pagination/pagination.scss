@@ -1,0 +1,47 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+
+  .btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: 200ms;
+    color: $white;
+    background-color: $primary-color;
+    box-sizing: border-box;
+  }
+
+  .clearButton {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: 200ms;
+    color: $primary-color;
+    background-color: $white;
+    box-sizing: border-box;
+
+    &.selected {
+      border: 2px solid $primary-color;
+    }
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+
+  a {
+    margin: 0 2.5px !important;
+  }
+}

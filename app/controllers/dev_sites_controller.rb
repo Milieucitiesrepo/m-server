@@ -4,9 +4,7 @@ class DevSitesController < ApplicationController
 
   def index
     @no_header = true
-    @dev_sites = DevSite.includes(:addresses, :statuses, :comments)
-    @dev_sites = @dev_sites.search(search_params) if search?
-    @dev_sites = @dev_sites.send(params[:sort]) if sort?
+    @dev_sites = retrieve_dev_sites
     @total = @dev_sites.count
     paginate
 
@@ -22,9 +20,7 @@ class DevSitesController < ApplicationController
   end
 
   def new
-    @dev_site = DevSite.new
-    @dev_site.addresses.build
-    @dev_site.statuses.build
+    @no_header = true
   end
 
   def edit; end
@@ -86,7 +82,7 @@ class DevSitesController < ApplicationController
   end
 
   def search_term_present?
-    search_terms = [:year, :status, :ward]
+    search_terms = [:year, :status, :ward, :municipality, :featured]
     search_terms.any? { |query| params[query].present? }
   end
 
@@ -95,7 +91,14 @@ class DevSitesController < ApplicationController
   end
 
   def search_params
-    params.permit(:latitude, :longitude, :year, :ward, :status)
+    params.permit(:latitude, :longitude, :year, :ward, :status, :municipality, :featured)
+  end
+
+  def retrieve_dev_sites
+    dev_sites = DevSite.joins(:ward, :municipality).includes(:addresses, :statuses, :comments)
+    dev_sites = dev_sites.search(search_params) if search?
+    dev_sites = dev_sites.send(params[:sort]) if sort?
+    dev_sites
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -105,17 +108,12 @@ class DevSitesController < ApplicationController
       .permit(
         :devID,
         :application_type,
-        :title,
-        :images_cache,
-        :files_cache,
-        :build_type,
+        :municipality_id,
+        :ward_id,
         :description,
         :ward_councillor_email,
         :urban_planner_email,
-        :ward_name,
-        :ward_num,
-        :image_url,
-        :hearts,
+        :featured,
         images: [],
         files: [],
         likes_attributes: [:id, :user_id, :dev_site_id, :_destroy],

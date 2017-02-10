@@ -6,10 +6,6 @@ a{
   transition: background-color 0s linear 100ms;
   background-color: inherit;
 
-  &:focus {
-    background-color: $accessibility;
-  }
-
   &.btn {
     color: $white !important;
   }

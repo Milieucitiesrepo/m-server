@@ -6,7 +6,6 @@ body{
   margin:0;
 }
 
-a:focus,
 div:focus,
 button:focus,
 input:focus:not([type="checkbox"]):not([type="radio"]),
@@ -17,6 +16,14 @@ label:focus{
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__navigation {
+  background-color: $light-gray;
 }
 
 .loading-screen {

@@ -6,7 +6,8 @@ const i18n = new LocalizedStrings({
     address: "Address",
     year: "Year",
     ward: "Ward",
-    status: "Status"
+    status: "Status",
+    city: "City"
 
   },
   fr: {
@@ -14,7 +15,9 @@ const i18n = new LocalizedStrings({
     address: "Adresse",
     year: "An",
     ward: "Quartier",
-    status: "Statut"
+    status: "Statut",
+    city: "Ville"
+
   }
 });
 

@@ -25,6 +25,10 @@ textarea {
   }
 }
 
+input[type="file"] {
+  display: block;
+}
+
 input[type="checkbox"], input[type="radio"] {
   + label {
     padding-left: 5px;
@@ -49,6 +53,7 @@ select {
   border: 1px solid $light-gray;
   background-color: $white;
   width: 100%;
+  font-size: 13px;
   height: 39px;
   border-radius: 3px;
 }
@@ -58,7 +63,7 @@ select {
   position: relative;
 }
 
-label{
+label {
   text-transform: uppercase;
   margin-bottom: 8px;
   display: inline-block;

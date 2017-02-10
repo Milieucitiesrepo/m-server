@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DevSite do
-  before { @dev_site = FactoryGirl.build(:dev_site) }
+  before { @dev_site = build(:dev_site) }
 
   subject { @dev_site }
 
@@ -22,11 +22,11 @@ describe DevSite do
   it { should be_valid }
 
   describe '#update_sentiment' do
-    let(:sentiment1) { FactoryGirl.create(:sentiment) }
-    let(:sentiment2) { FactoryGirl.create(:sentiment) }
-    let(:comment1) { FactoryGirl.create(:comment, sentiment: sentiment1) }
-    let(:comment2) { FactoryGirl.create(:comment, sentiment: sentiment2) }
-    let(:dev_site_with_comments) { FactoryGirl.create(:dev_site) }
+    let(:sentiment1) { create(:sentiment) }
+    let(:sentiment2) { create(:sentiment) }
+    let(:comment1) { create(:comment, sentiment: sentiment1) }
+    let(:comment2) { create(:comment, sentiment: sentiment2) }
+    let(:dev_site_with_comments) { create(:dev_site) }
 
     before do
       dev_site_with_comments.comments << comment1
@@ -74,14 +74,14 @@ describe DevSite do
 
   describe '#search' do
     before :each do
-      @dev_site1 = FactoryGirl.create(:dev_site)
-      @dev_site2 = FactoryGirl.create(:dev_site, updated: DateTime.new(2012, 12, 1).utc)
-      @dev_site3 = FactoryGirl.create(:dev_site, ward_name: 'Orleans')
-      @dev_site4 = FactoryGirl.create(:dev_site)
+      @dev_site1 = create(:dev_site)
+      @dev_site2 = create(:dev_site, updated: DateTime.new(2012, 12, 1).utc)
+      @dev_site3 = create(:dev_site, ward_name: 'Orleans')
+      @dev_site4 = create(:dev_site)
 
-      @dev_site1.addresses << FactoryGirl.create(:address)
-      @dev_site4.statuses << FactoryGirl.create(:status)
-      @dev_site4.statuses << FactoryGirl.create(:status,
+      @dev_site1.addresses << create(:address)
+      @dev_site4.statuses << create(:status)
+      @dev_site4.statuses << create(:status,
                                                 status_date: DateTime.current - 1.day,
                                                 status: 'Comment Period in Progress')
     end
@@ -150,8 +150,8 @@ describe DevSite do
   end
 
   describe '#status' do
-    let(:dev_site) { FactoryGirl.create(:dev_site) }
-    let(:test_status) { FactoryGirl.create(:status) }
+    let(:dev_site) { create(:dev_site) }
+    let(:test_status) { create(:status) }
 
     it 'should return nil if dev site has no status' do
       expect(dev_site.status).to be_nil
@@ -164,16 +164,10 @@ describe DevSite do
   end
 
   describe '#status_date' do
-    let(:dev_site) { FactoryGirl.create(:dev_site) }
-    let(:test_status_no_date) { FactoryGirl.create(:status, status_date: nil) }
-    let(:test_status_with_date) { FactoryGirl.create(:status) }
+    let(:dev_site) { create(:dev_site) }
+    let(:test_status_with_date) { create(:status) }
 
     it 'should return nil if dev site has no status' do
-      expect(dev_site.status_date).to be_nil
-    end
-
-    it 'should return nil if the current status has no status date' do
-      dev_site.statuses << test_status_no_date
       expect(dev_site.status_date).to be_nil
     end
 
@@ -185,9 +179,9 @@ describe DevSite do
   end
 
   describe 'address methods' do
-    let(:dev_site) { FactoryGirl.create(:dev_site) }
-    let(:address1) { FactoryGirl.create(:address) }
-    let(:address2) { FactoryGirl.create(:address) }
+    let(:dev_site) { create(:dev_site) }
+    let(:address1) { create(:address) }
+    let(:address2) { create(:address) }
 
     context 'dev site has no addresses' do
       it 'should return nil' do
@@ -228,9 +222,9 @@ describe DevSite do
     end
 
     it 'should return dev sites in order of ids in array' do
-      dev_site1 = FactoryGirl.create(:dev_site)
-      dev_site2 = FactoryGirl.create(:dev_site)
-      dev_site3 = FactoryGirl.create(:dev_site)
+      dev_site1 = create(:dev_site)
+      dev_site2 = create(:dev_site)
+      dev_site3 = create(:dev_site)
       ids = [dev_site2.id, dev_site3.id, dev_site1.id]
 
       result = DevSite.find_ordered ids

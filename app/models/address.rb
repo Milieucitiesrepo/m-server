@@ -7,6 +7,7 @@ class Address < ActiveRecord::Base
                    lat_column_name: :lat,
                    lng_column_name: :lon
   after_validation :geocoded, if: :new_street?
+  validates :street, presence: { message: 'Street of address is required.' }
 
   def new_street?
     street.present? && street_changed?

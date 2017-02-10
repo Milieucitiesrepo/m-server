@@ -60,9 +60,6 @@ nav{
           width: 150px;
           font-size: 0.8rem;
           transition: 200ms;
-          &:focus{
-            background-color: $accessibility;            
-          }
 
           &:hover{
             background-color: $secondary-color;

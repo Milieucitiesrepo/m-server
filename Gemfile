@@ -47,7 +47,13 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
-group :development, :test do
+group :development do
+  gem 'capistrano', '3.7.1', require: false
+  gem 'capistrano-npm', '~> 1.0.2', require: false
+  gem 'capistrano-rails', '~> 1.2.2', require: false
+  gem 'capistrano-rvm', '~> 0.1.2', require: false
+  gem 'capistrano-bundler', '~> 1.2.0', require: false
+  gem 'capistrano-resque', '~> 0.2.2', require: false
   gem 'pry'
   gem 'spring'
   gem 'letter_opener'
@@ -59,6 +65,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'dotenv-rails', '~> 2.1.1'
   gem 'ffaker'
   gem 'rspec-rails', '~> 3.3'
   gem 'factory_girl_rails', '~> 4.2.1'
@@ -67,7 +74,7 @@ group :test do
   gem 'mini_backtrace', '0.1.3'
 end
 
-group :production do
+group :production, :staging do
   gem 'unicorn', '5.1.0'
 end
 

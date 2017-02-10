@@ -10,5 +10,11 @@ FactoryGirl.define do
         user.add_role :admin
       end
     end
+
+    factory :organization_admin_user do
+      after(:build) do |user|
+        user.add_role :organization_admin
+      end
+    end
   end
 end

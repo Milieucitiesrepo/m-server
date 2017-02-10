@@ -53,6 +53,11 @@ module.exports = {
         'sass-resources']
       },
       {
+        test: /\.css$/,
+        loaders: ['style',
+        'css?modules&importLoaders=3&localIdentName=[name]-[local]-[hash:base64:5]']
+      },
+      {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url?limit=100000&minetype=application/font-woff'
       },

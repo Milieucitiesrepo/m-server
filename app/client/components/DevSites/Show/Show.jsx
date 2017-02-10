@@ -5,6 +5,7 @@ import Header from '../../Layout/Header/Header'
 import Footer from '../../Layout/Footer/Footer'
 import Modal from '../../Utility/Modal/Modal'
 import Comments from '../../Comments/Comments'
+import Loader from '../../Common/Loader/Loader'
 import i18n from './locale'
 import Chart from 'chart.js'
 import { ShareButtons, generateShareIcon } from 'react-share';
@@ -25,7 +26,7 @@ export default class DevSiteShow extends Component {
     this.loadDevSite();
   }
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.devSite && !prevState.devSite) {
+    if(this.state.devSite && !prevState.devSite && this.state.devSite.sentiment) {
       this.generateChart();
     }
   }
@@ -111,16 +112,7 @@ export default class DevSiteShow extends Component {
       <div className={css.root}>
         <Header />
         <div className={`${css.container} container`}>
-          {
-            loading &&
-            <div className='loading-screen'>
-              <div className='spinner'>
-                <div className='bounce1'></div>
-                <div className='bounce2'></div>
-                <div className='bounce3'></div>
-              </div>
-            </div>
-          }
+          <Loader loading={loading} />
           {
             !loading &&
             <div>
@@ -130,22 +122,31 @@ export default class DevSiteShow extends Component {
                   <img src={devSite.image_url} className={css.image} />
 
                   <div className={css.share}>
-                    <FacebookShareButton url={devSite.url} title={devSite.address} media={devSite.image_url}>
+                    <FacebookShareButton url={devSite.url} title={devSite.address} picture={devSite.image_url}>
                       <FacebookIcon size={32} round />
                     </FacebookShareButton>
-                    <TwitterShareButton url={devSite.url} title={devSite.address} media={devSite.image_url}>
+                    <TwitterShareButton url={devSite.url} title={devSite.address} picture={devSite.image_url}>
                       <TwitterIcon size={32} round />
                     </TwitterShareButton>
                   </div>
 
-                  <div className={css.emailofficials}>
-                    <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Urban Planner'>
-                      <i className={css.mail}></i> Urban Planner
-                    </a>
-                    <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Councillor'>
-                      <i className={css.mail}></i> Councillor
-                    </a>
-                  </div>
+                  {
+                    devSite.urban_planner_email || devSite.ward_councillor_email &&
+                    <div className={css.emailofficials}>
+                      {
+                        devSite.urban_planner_email &&
+                        <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Urban Planner'>
+                          <i className={css.mail}></i> Urban Planner
+                        </a>
+                      }
+                      {
+                        devSite.ward_councillor_email &&
+                        <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Councillor'>
+                          <i className={css.mail}></i> Councillor
+                        </a>
+                      }
+                    </div>
+                  }
                 </div>
                 <div className='col s12 m6'>
                   <div className='row'>

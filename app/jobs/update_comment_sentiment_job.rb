@@ -1,5 +1,5 @@
 class UpdateCommentSentimentJob
-  @queue = :primary_queue
+  @queue = :milieu_primary_queue
 
   def self.perform(comment_id)
     comment = Comment.find_by(id: comment_id)

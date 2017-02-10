@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function(){
   };
 
   if($('#notice').length){
-    window.flash('notice',  $('#notice').data('notice'));
+    window.flash('notice', $('#notice').data('notice'));
   }
 
   if($('#alert').length){
@@ -21,43 +21,7 @@ $(document).on('turbolinks:load', function(){
     window.flash('alert', 'Error verifying');
   });
 
-  $('#contact-councillor').on("ajax:success", function(){
-    this.reset();
-    window.flash('notice', 'Message successfully sent!');
-  }).on('ajax:error', function(){
-    this.reset();
-    window.flash('alert', 'Message unsuccessfully sent!');
-  });
-
-  $('#contact-file-lead').on('ajax:success', function(){
-    this.reset();
-    window.flash('notice', 'Message successfully sent!');
-  }).on('ajax:error', function(){
-    this.reset();
-    window.flash('alert', 'Message unsuccessfully sent!');
-  });
-
-  $('#contact-milieu').on('ajax:success', function(){
-    this.reset();
-    window.flash('notice', 'Message successfully sent!');
-  }).on('ajax:error', function(){
-    this.reset();
-    window.flash('alert', 'Message unsuccessfully sent!');
-  });
-
-  $('#contact-citizencity').on('ajax:success', function(){
-    this.reset();
-    window.flash('notice', 'Message successfully sent!');
-  }).on('ajax:error', function(){
-    this.reset();
-    window.flash('alert', 'Message unsuccessfully sent!');
-  });
-
   $('.modal-trigger').leanModal();
-
-  $('.input-field').on('cocoon:after-insert', function(e, insertedItem) {
-    $('select').material_select();
-  });
 
 });
 

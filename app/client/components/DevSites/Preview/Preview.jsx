@@ -13,7 +13,7 @@ const TwitterIcon = generateShareIcon('twitter');
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = { showFiles: false }
+    this.state = { showFiles: false, devSite: props.devSite }
     this.parent = this.props.parent;
     this.currentUserId = parseInt(document.body.dataset.userId);
     this.loadDevSite = () => this._loadDevSite();
@@ -22,23 +22,33 @@ export default class extends Component {
     this.openEmailModal = (e) => this._openEmailModal(e);
     this.handleEmail = (e) => this._handleEmail(e);
     this.toggleLike = () => this._toggleLike();
-    this.loadDevSite();
+    this.toggleFeatured = () => this._toggleFeatured();
+    this.userAdmin = () => this._userAdmin();
+
+    if(!props.devSite) {
+      this.loadDevSite();
+    }
+
   }
+
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.id !== this.props.id) this.loadDevSite();
     this.refs.container &&  this.refs.container.focus();
   }
+
   _loadDevSite() {
     $.getJSON(`/dev_sites/${this.props.id}`,
       devSite => this.setState({ devSite })
     );
   }
+
   _openEmailModal(e) {
     e.preventDefault();
     const { urban_planner_email, ward_councillor_email } = this.state.devSite;
     const contact = e.currentTarget.innerText;
     this.setState({ showModal: true, contact });
   }
+
   _handleEmail(e) {
     e.preventDefault();
     const { contact } = this.state;
@@ -60,6 +70,7 @@ export default class extends Component {
       }
     });
   }
+
   _toggleLike() {
     const { devSite } = this.state;
     const data = devSite.like ?
@@ -80,14 +91,39 @@ export default class extends Component {
       }
     });
   }
+
+  _toggleFeatured() {
+    const { devSite } = this.state;
+    const featured = !devSite.featured;
+    const data = { dev_site: { featured }};
+    $.ajax({
+      url: `/dev_sites/${devSite.id}`,
+      dataType: 'JSON',
+      type: 'PATCH',
+      data: data,
+      success: devSiteJson => {
+        this.setState({ devSite: devSiteJson })
+      },
+      error: error => {
+        window.flash('alert', error)
+      }
+    });
+  }
+
+  _userAdmin() {
+    return document.body.dataset.userRoles && (document.body.dataset.userRoles.indexOf('admin') !== -1)
+  }
+
   _closeDevSite(e) {
     e.preventDefault();
     this.parent.setState({ activeDevSiteId: null });
   }
+
   _toggleShowFiles(e) {
     e.preventDefault();
     this.setState({ showFiles: !this.state.showFiles });
   }
+
   render() {
     const { devSite, showFiles, showModal, showReadMore, readMoreClicked, contact } = this.state;
     const { horizontal, preview } = this.props;
@@ -98,10 +134,29 @@ export default class extends Component {
 
     if(preview && !horizontal) {
       return(
-        <div className={css.verticalPreviewContainer} title={`Development Site at ${devSite.address}`}>
+        <div className={css.verticalPreviewContainer} style={{width: this.props.width}} title={`Development Site at ${devSite.address}`}>
           {false && <div className={css.status}>{i18n.openForComments}</div>}
           <img src={devSite.image_url} alt={`Image of ${devSite.address}`} className={css.image} />
           <div className={css.content}>
+            <svg height='40' width='100%'>
+              <mask id='circles'>
+                <circle cx='10%' cy='20' r='15' fill='#aaa' />
+                <circle cx='50%' cy='20' r='15' fill='#aaa' />
+                <circle cx='90%' cy='20' r='15' fill='#aaa' />
+                <circle cx='10%' cy='20' r='10' fill='#fff' />
+                <circle cx='50%' cy='20' r='10' fill='#fff' />
+                <circle cx='90%' cy='20' r='10' fill='#fff' />
+                <line x1='10%' x2='90%' y1='20' y2='20' stroke='#fff' strokeWidth='2' />
+              </mask>
+
+              <linearGradient id='gradients'>
+                <stop offset='0' stopColor='#92c7c6' />
+                {devSite.general_status == 'Active Development' && <stop offset='0.4' stopColor='#ddd' />}
+                {(devSite.general_status == 'Comment Period' || devSite.general_status == 'Active Development') && <stop offset='1' stopColor='#ddd'/>}
+              </linearGradient>
+
+              <rect height='40' width='100%' fill='url(#gradients)' mask='url(#circles)'></rect>
+            </svg>
             <h3 className={css.address}>{devSite.address}</h3>
             <div className={css.description} dangerouslySetInnerHTML={{__html: devSite.description }} tabIndex='-1'></div>
           </div>
@@ -115,6 +170,25 @@ export default class extends Component {
           {false && <div className={css.status}>{i18n.openForComments}</div>}
           <img src={devSite.image_url} alt={`Image of ${devSite.address}`} className={css.image} />
           <div className={css.content}>
+            <svg height='40' width='100%'>
+              <mask id='circles'>
+                <circle cx='10%' cy='20' r='15' fill='#aaa' />
+                <circle cx='50%' cy='20' r='15' fill='#aaa' />
+                <circle cx='90%' cy='20' r='15' fill='#aaa' />
+                <circle cx='10%' cy='20' r='10' fill='#fff' />
+                <circle cx='50%' cy='20' r='10' fill='#fff' />
+                <circle cx='90%' cy='20' r='10' fill='#fff' />
+                <line x1='10%' x2='90%' y1='20' y2='20' stroke='#fff' strokeWidth='2' />
+              </mask>
+
+              <linearGradient id='gradients'>
+                <stop offset='0' stopColor='#92c7c6' />
+                {devSite.general_status == 'Active Development' && <stop offset='0.4' stopColor='#ddd' />}
+                {(devSite.general_status == 'Comment Period' || devSite.general_status == 'Active Development') && <stop offset='1' stopColor='#ddd'/>}
+              </linearGradient>
+
+              <rect height='40' width='100%' fill='url(#gradients)' mask='url(#circles)'></rect>
+            </svg>
             <h3 className={css.address}>{devSite.address}</h3>
             <div className={css.description} dangerouslySetInnerHTML={{__html: devSite.description }} tabIndex='-1'></div>
           </div>
@@ -144,6 +218,12 @@ export default class extends Component {
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
             </div>
+            {
+              this.userAdmin() &&
+              <div className={css.featuredContainer}>
+                <i className={`fa fa-star ${devSite.featured ? css.featured : css.unfeatured}`} onClick={this.toggleFeatured}></i>
+              </div>
+            }
             <div className={css.likecontainer}>
               <i className={devSite.like ? css.liked : css.like} onClick={this.toggleLike}></i>
               { devSite.likes_count }
@@ -200,15 +280,23 @@ export default class extends Component {
             })
           }
 
-          <div className={css.emailofficials}>
-            <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Urban Planner'>
-              <i className={css.mail}></i> Urban Planner
-            </a>
-            <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Councillor'>
-              <i className={css.mail}></i> Councillor
-            </a>
-          </div>
-
+          {
+            devSite.urban_planner_email || devSite.ward_councillor_email &&
+            <div className={css.emailofficials}>
+              {
+                devSite.urban_planner_email &&
+                <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Urban Planner'>
+                  <i className={css.mail}></i> Urban Planner
+                </a>
+              }
+              {
+                devSite.ward_councillor_email &&
+                <a href='#' onClick={this.openEmailModal} className={css.email} title='Email the Councillor'>
+                  <i className={css.mail}></i> Councillor
+                </a>
+              }
+            </div>
+          }
         </div>
 
         <Comments devSiteId={devSite.id} />

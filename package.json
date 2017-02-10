@@ -11,6 +11,9 @@
     "postinstall": "cd app/client && npm install",
     "lint": "eslint --ext .jsx app/client; exit 0"
   },
+  "config": {
+    "unsafe-perm": true
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Milieucitiesrepo/m-server.git"

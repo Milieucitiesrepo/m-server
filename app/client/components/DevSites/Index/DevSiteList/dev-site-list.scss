@@ -120,10 +120,6 @@
     display: block;
     cursor: pointer;
     opacity: 0.3;
-
-    &:focus {
-      border: 2px solid $accessibility;
-    }
   }
 
   .rightarrow {
@@ -134,10 +130,6 @@
     height: 20px;
     display: block;
     cursor: pointer;
-
-    &:focus {
-      border: 2px solid $accessibility;
-    }
   }
 
   .disableleftarrow {
@@ -149,10 +141,6 @@
     display: block;
     cursor: pointer;
     opacity: 0.3;
-
-    &:focus {
-      border: 2px solid $accessibility;
-    }
   }
 
   .leftarrow {
@@ -163,9 +151,5 @@
     height: 20px;
     display: block;
     cursor: pointer;
-
-    &:focus {
-      border: 2px solid $accessibility;
-    }
   }
 }

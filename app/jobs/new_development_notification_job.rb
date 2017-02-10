@@ -1,15 +1,15 @@
 require 'mandrill'
 
 class NewDevelopmentNotificationJob
-  @queue = :primary_queue
+  @queue = :milieu_primary_queue
 
   class << self
     def perform(dev_site_id)
-      addresses = dev_site_addresses
+      addresses = dev_site_addresses(dev_site_id)
       addresses.each do |address|
         next if address.lat.blank? || address.lon.blank?
         message = prepare_message(address, dev_site_id)
-        send_email(message) if message
+        send_email(message) if message.present?
       end
     end
 
@@ -17,7 +17,7 @@ class NewDevelopmentNotificationJob
 
     def prepare_message(address, dev_site_id)
       user_ids = search_user_ids(address)
-      return unless user_ids.empty?
+      return if user_ids.empty?
 
       recipients = convert_users_to_mandrill_recipients(user_ids)
       merge_vars = convert_users_to_mandrill_merge_fields(user_ids)
@@ -28,7 +28,7 @@ class NewDevelopmentNotificationJob
 
     def send_email(message)
       mandrill = Mandrill::API.new(ENV['MANDRILL_API_KEY'])
-      mandrill.messages.send message
+      result = mandrill.messages.send message
     end
 
     def dev_site_addresses(dev_site_id)

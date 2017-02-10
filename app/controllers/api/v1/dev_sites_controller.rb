@@ -1,4 +1,5 @@
 class Api::V1::DevSitesController < Api::V1::ApiController
+  before_action :authenticate_request
 
   def index
     @dev_sites = DevSite.includes(:addresses, :statuses, :comments)

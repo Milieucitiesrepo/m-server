@@ -35,9 +35,9 @@ class Profile < ActiveRecord::Base
   ].freeze
 
   validates :name, presence: { message: 'Name is required' }
-  validates :organization, presence: true, if: :verification_requested?
-  validates :community_role, presence: true, if: :verification_requested?
-  validates :bio, presence: true, if: :verification_requested?
+  validates :organization, presence: { message: 'Organization is required' }, if: :verification_requested?
+  validates :community_role, presence: { message: 'Community role is required' }, if: :verification_requested?
+  validates :bio, presence: { message: 'Bio is required' }, if: :verification_requested?
   validates :accepted_terms, acceptance: { accept: true, message: 'Terms of use must be accepted' }
 
   after_save :send_verification_mailer, if: :verification_requested?, on: [:update]
@@ -49,6 +49,6 @@ class Profile < ActiveRecord::Base
   end
 
   def send_verification_mailer
-    VerificationMailer.request_role_verification(user).deliver_now
+    VerificationMailer.request_role_verification(user).deliver_now if verification_status_changed?
   end
 end
