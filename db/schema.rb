@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116064041) do
+ActiveRecord::Schema.define(version: 20170205161207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20170116064041) do
     t.text     "description"
     t.string   "ward_name"
     t.integer  "ward_num"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "appID"
     t.datetime "received_date"
     t.datetime "updated"
@@ -96,6 +96,9 @@ ActiveRecord::Schema.define(version: 20170116064041) do
     t.float    "disgust_total",         default: 0.0
     t.float    "fear_total",            default: 0.0
     t.float    "sadness_total",         default: 0.0
+    t.integer  "municipality_id"
+    t.integer  "ward_id"
+    t.boolean  "featured",              default: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -134,6 +137,26 @@ ActiveRecord::Schema.define(version: 20170116064041) do
   add_index "likes", ["dev_site_id"], name: "index_likes_on_dev_site_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.boolean "admin"
+  end
+
+  create_table "municipalities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "municipalities_organizations", force: :cascade do |t|
+    t.integer "municipality_id"
+    t.integer "organization_id"
+  end
+
+  add_index "municipalities_organizations", ["municipality_id"], name: "index_municipalities_organizations_on_municipality_id", using: :btree
+  add_index "municipalities_organizations", ["organization_id"], name: "index_municipalities_organizations_on_organization_id", using: :btree
+
   create_table "newsletter_subscriptions", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false
@@ -149,6 +172,12 @@ ActiveRecord::Schema.define(version: 20170116064041) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -232,6 +261,15 @@ ActiveRecord::Schema.define(version: 20170116064041) do
   add_index "votes", ["comment_id"], name: "index_votes_on_comment_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
+  create_table "wards", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "municipality_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "wards", ["municipality_id"], name: "index_wards_on_municipality_id", using: :btree
+
   add_foreign_key "conversations", "users"
   add_foreign_key "likes", "dev_sites"
   add_foreign_key "likes", "users"
@@ -239,4 +277,5 @@ ActiveRecord::Schema.define(version: 20170116064041) do
   add_foreign_key "profiles", "users"
   add_foreign_key "votes", "comments"
   add_foreign_key "votes", "users"
+  add_foreign_key "wards", "municipalities"
 end
