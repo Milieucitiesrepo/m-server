@@ -98,33 +98,26 @@ export default class Home extends Component {
               </p>
             </div>
             </div>
-
-
         </div>
         <div className={css.featuredContainer}>
-          <h2 className={css.title}>{i18n.featuredDevelopments}</h2>
-          <div className={css.featured}>
-<<<<<<< HEAD
-            <a href={`/${locale}/dev_sites?activeDevSiteId=1121`}><DevSitePreview id={1121} preview={true} horizontal={isMobile} /></a>
-            <a href={`/${locale}/dev_sites?activeDevSiteId=1561`}><DevSitePreview id={1561} preview={true} horizontal={isMobile} /></a>
-            <a href={`/${locale}/dev_sites?activeDevSiteId=1361`}><DevSitePreview id={1361} preview={true} horizontal={isMobile} /></a>
-=======
-            {
-              this.state.featuredSites.map((site, index) => {
-                return(
-                  <a href={`/${locale}/dev_sites?activeDevSiteId=${site.id}`} key={index}>
-                    <DevSitePreview
-                      id={site.id}
-                      preview={true}
-                      horizontal={isMobile}
-                    />
-                  </a>
-                )
-              })
-            }
->>>>>>> master
-          </div>
-        </div>
+       <h2 className={css.title}>{i18n.featuredDevelopments}</h2>
+       <div className={css.featured}>
+         {
+           this.state.featuredSites.map((site, index) => {
+             return(
+               <a href={`/${locale}/dev_sites?activeDevSiteId=${site.id}`} key={index}>
+                 <DevSitePreview
+                   id={site.id}
+                   preview={true}
+                   horizontal={isMobile}
+                 />
+               </a>
+             )
+           })
+         }
+       </div>
+     </div>
+
         <div className={css.articleContainer}>
           <Carousel>
             <a title={'Go to Milieu\'s article of Zoning 101'} href='https://medium.com/@MilieuCities/zoning-101-a88c1e397455#.du6yt0qgk' target='_blank' className={css.article}>
