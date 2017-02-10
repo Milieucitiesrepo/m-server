@@ -70,7 +70,7 @@ export default class Home extends Component {
           </div>
         </div>
         <div className={css.guelphContainer}>
-          <a href='https://about.milieu.io/discover-milieu' className={css.milieuCityTag}> Disvcover Milieu City</a>
+          <a href='https://about.milieu.io/discover-milieu' className={css.milieuCityTag}> Discover Milieu City</a>
             <div>
               <a href='https://about.milieu.io/city-of-guelph' className={css.cityLink} >Guelph, ON</a>
               <p>{i18n.guelphDescription}</p>
