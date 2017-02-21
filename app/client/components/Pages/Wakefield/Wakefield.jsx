@@ -95,7 +95,7 @@ export default class Wakefield extends Component {
                 </div>
               </div>
 
-              <TypeformSurvey />
+              <TypeformSurvey surveyUrl='https://milieu.typeform.com/to/HHlHgX'/>
 
               <div className={css.sentiment}>
                 {

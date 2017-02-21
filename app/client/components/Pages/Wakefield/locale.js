@@ -17,6 +17,7 @@ const i18n = new LocalizedStrings({
     partners: 'Partners',
     partnersText: 'The redesign of the Spring wouldn’t be possible without the generous support of the following partners',
     timeline: 'February 15, 2017 Online Engagement Open. March 22, 2017 World Water Day Design Workshop Time: 9:30am-11:30am Location: Centre Wakefield La Pêche. April 22, 2017 Earth Day Design Presentation and Community Input Session Time: to be determined Location: to be determined. April 30, 2017 Online Engagement Close. Summer 2017 Wakefield Spring Redesign.',
+    startSurvey: 'Start the Survey',
   },
   fr: {
     aboutProject: 'À propos de ce projet',
@@ -34,6 +35,7 @@ const i18n = new LocalizedStrings({
     partners: 'Partenaires',
     partnersText: 'La refonte de la Source ne serait pas possible sans le soutien généreux des organisations suivantes',
     timeline: '15 février 2017 Engagement en ligne. 22 mars 2017 Journée mondiale de l\'eau Atelier de design Heure: 9.30h-11.30h Lieu: Centre Wakefield La Pêche. 22 avril 2017 Jour de la Terre Présentation de la conception et session de saisie de la communauté Heure: à être déterminé Lieu: à être déterminé. 30 avril 2017 Fermeture de l’engagement en ligne Été 2017 Refonte de la Source Wakefield',
+    startSurvey: 'Démarrer le sondage',
   }
 });
 
