@@ -8,7 +8,7 @@ class CustomSurveysController < ApplicationController
 
     render(json: {}, status: 500) && return unless survey
 
-    responses = params['form_response']['answers']
+    responses = params['form_response']
     submitted_at = params['form_response']['submitted_at']
     token = params['form_response']['token']
 
