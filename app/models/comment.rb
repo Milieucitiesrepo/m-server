@@ -79,14 +79,10 @@ class Comment < ActiveRecord::Base
     dev_site = commentable
     planner_email = dev_site.urban_planner_email
     milieu_email = ApplicationMailer::MILIEU_EMAIL_ADDRESS
-    recipients = [planner_email, milieu_email]
+    users = User.where(email: [planner_email, milieu_email])
 
-    recipients.each do |recipient|
-      user = User.find_by(email: recipient)
-      next unless user.present?
 
-      CommentNotificationMailer.flagged_comment_notification(user, self, dev_site).deliver_later
-    end
+    FlaggedCommentNotificationJob.perform(users, self, dev_site)
   end
 
   def vote_direction(current_user, direction)

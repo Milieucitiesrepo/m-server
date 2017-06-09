@@ -12,17 +12,26 @@
     margin-right: 10px;
   }
 </style>
-<p>Dear <%= @name %>,</p>
-<p>A comment has been flagged as offensive in Dev Site <%= @dev_site.devID %></p>
-<br>
-<p>This is the comment body:</p>
-<p class="comment-body">"<%= @comment.body %>"</p>
-<br>
-<p>The comment is not currently published. You can either publish or delete the comment: </p>
-<p>
-  <a href=<%= @approve_comment_url %>>Publish the comment</a>
-  <a href=<%= @reject_comment_url %>>Delete the comment</a>
-</p>
-<br>
-<p>These links are valid for 2 days. </p>
-<p>Keep up the good work!</p>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear *|name|*,</p>
+    <p>A comment has been flagged as offensive in Dev Site *| dev_site_id |*</p>.
+    <br>
+    <p>This is the comment body:</p>
+    <p class="comment-body">"*|comment_body|*"</p>
+    <br>
+    <p>The comment is not currently published. You can either publish or delete the comment: </p>
+    <p>
+      <a href="*|approve_comment_url|*">Publish the comment</a>
+      <a href="*|delete_comment_url|*">Delete the comment</a>
+    </p>
+    <br>
+    <p>These links are valid for 2 days. </p>
+    <p>Keep up the good work!</p>
+  </body>
+</html>
