@@ -25,7 +25,6 @@ Ward.find_or_create_by(name: 'Rideau-Goulbourn', municipality_id: ottawa_municip
 Ward.find_or_create_by(name: 'Gloucester-South Nepean', municipality_id: ottawa_municipality.id)
 Ward.find_or_create_by(name: 'Kanata South', municipality_id: ottawa_municipality.id)
 
-
 # answers = [
 #   {
 #     "type": "text",

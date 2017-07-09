@@ -1,6 +1,6 @@
 object @dev_site
 
-attributes :id, :devID, :featured, :application_type_name, :title, :status, :status_date, :street, :address, :images, :description, :short_description, :ward_name, :ward_num, :image_url, :updated_at, :latitude, :longitude, :municipality_id, :ward_id, :urban_planner_name, :urban_planner_email, :ward_councillor_email, :updated, :general_status, :applicant_first_name, :applicant_last_name, :on_behalf_of, :url_full_notice
+attributes :id, :devID, :featured, :application_type_name, :title, :status, :start_date, :street, :address, :images, :description, :short_description, :ward_name, :ward_num, :image_url, :updated_at, :latitude, :longitude, :municipality_id, :ward_id, :urban_planner_name, :urban_planner_email, :ward_councillor_email, :updated, :general_status, :applicant_first_name, :applicant_last_name, :on_behalf_of, :url_full_notice
 
 node(:likes_count) { |dev_site| dev_site.likes.count  }
 

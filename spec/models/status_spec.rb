@@ -13,16 +13,16 @@ describe Status do
       it { should_not be_valid }
     end
 
-    context 'when status_date is not present' do
-      before { status.status_date = '' }
+    context 'when start_date is not present' do
+      before { status.start_date = '' }
       it { should_not be_valid }
     end
   end
 
   describe 'scopes' do
     it 'should return the current status' do
-      old_status = create(:status, status_date: (DateTime.current - 1.day))
-      current_status = create(:status, status_date: DateTime.current)
+      old_status = create(:status, start_date: (DateTime.current - 1.day))
+      current_status = create(:status, start_date: DateTime.current)
       expect(current_status).to eq Status.current
     end
   end

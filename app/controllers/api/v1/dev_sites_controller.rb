@@ -94,7 +94,7 @@ class Api::V1::DevSitesController < Api::V1::ApiController
                                      { files: [] },
                                      likes_attributes: [:id, :user_id, :dev_site_id, :_destroy],
                                      addresses_attributes: [:id, :lat, :lon, :street, :_destroy],
-                                     statuses_attributes: [:id, :status, :status_date, :_destroy])
+                                     statuses_attributes: [:id, :status, :start_date, :_destroy])
   end
 
   def sync_params

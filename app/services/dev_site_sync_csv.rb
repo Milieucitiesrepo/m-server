@@ -5,7 +5,7 @@ module Services
       'FOLDERNAME' => 'title',
       'FOLDERDESC' => 'application_type',
       'REFERENCEF' => 'devID',
-      'INDATE' => 'status_date',
+      'INDATE' => 'start_date',
       'SUBDESC' => 'build_type',
       'STATUSDESC' => 'status',
       'FOLDERDE_1' => 'short_description',
@@ -80,8 +80,8 @@ module Services
 
     def update_status(dev_site, site_params)
       dev_site.statuses << Status.create(status: site_params['status'],
-                                         start_date: site_params['status_date'],
-                                         end_date: site_params['status_date'] )
+                                         start_date: site_params['start_date'],
+                                         end_date: site_params['start_date'] )
     end
 
     def update_address(dev_site, site_params)

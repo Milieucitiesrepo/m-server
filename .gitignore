@@ -28,6 +28,9 @@ Gemfile.lock
 Makefile
 *.DS_Store
 
+# Ignore redis
+/redis-stable
+
 # Ignore application configuration
 /config/application.yml
 

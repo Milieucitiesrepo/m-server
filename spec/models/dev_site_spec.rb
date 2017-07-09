@@ -83,14 +83,17 @@ describe DevSite do
       @dev_site4 = create(:dev_site, municipality: @guelph)
       @dev_site5 = create(:dev_site, municipality: @ottawa, updated: DateTime.new(2013, 12, 1).utc)
       @dev_site6 = create(:dev_site)
+      @dev_site7 = create(:dev_site, devID: 9999)
+      @dev_site8 = create(:dev_site)
 
       @dev_site1.addresses << create(:address)
       @dev_site4.statuses << create(:status)
       @dev_site4.statuses << create(:status,
-                                    status_date: DateTime.current - 1.day,
+                                    start_date: DateTime.current - 1.day,
                                     status: 'Comment Period in Progress')
       @dev_site6.addresses << create(:address)
       @dev_site6.statuses << create(:status, status: 'Comment Period in Progress')
+      @dev_site8.addresses << create(:address, street: '123 Queen Street')
     end
 
     context 'no params passed' do
@@ -99,13 +102,15 @@ describe DevSite do
 
         result = DevSite.search(search_params)
 
-        expect(result.count).to eq(6)
+        expect(result.count).to eq(8)
         expect(result).to include(@dev_site1)
         expect(result).to include(@dev_site2)
         expect(result).to include(@dev_site3)
         expect(result).to include(@dev_site4)
         expect(result).to include(@dev_site5)
         expect(result).to include(@dev_site6)
+        expect(result).to include(@dev_site7)
+        expect(result).to include(@dev_site8)
       end
     end
 
@@ -190,6 +195,30 @@ describe DevSite do
         expect(result).to eq([@dev_site6])
       end
     end
+
+    context 'devID provided as search query' do
+      it 'should retrieve only the DevSites that match the devID and query params' do
+        search_params = {
+          devID: 9999
+        }
+      
+        result = DevSite.search(search_params)
+
+        expect(result).to eq([@dev_site7])
+      end
+    end
+
+    context 'address provided as search query' do
+      it 'should retrieve only the DevSites that match the address and query params' do
+        search_params = {
+          address: "123 Queen Street" 
+        }
+      
+        result = DevSite.search(search_params)
+
+        expect(result).to eq([@dev_site8])
+      end
+    end
   end
 
   describe '#status' do
@@ -206,18 +235,18 @@ describe DevSite do
     end
   end
 
-  describe '#status_date' do
+  describe '#start_date' do
     let(:dev_site) { create(:dev_site) }
     let(:test_status_with_date) { create(:status) }
 
     it 'should return nil if dev site has no status' do
-      expect(dev_site.status_date).to be_nil
+      expect(dev_site.start_date).to be_nil
     end
 
     it 'should return the status date of the current status' do
       dev_site.statuses << test_status_with_date
-      expected_date = test_status_with_date.status_date.strftime('%B %e, %Y')
-      expect(dev_site.status_date).to eq(expected_date)
+      expected_date = test_status_with_date.start_date.strftime('%B %e, %Y')
+      expect(dev_site.start_date).to eq(expected_date)
     end
   end
 

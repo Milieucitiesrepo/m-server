@@ -6,5 +6,6 @@ FactoryGirl.define do
     city { FFaker::AddressCA.city.rstrip }
     province_state { FFaker::AddressCA.province }
     country 'Canada'
+    association :addressable, factory: :dev_site
   end
 end

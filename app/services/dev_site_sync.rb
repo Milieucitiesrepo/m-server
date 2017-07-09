@@ -159,7 +159,7 @@ module Services
 
     def parse_status(status)
       {
-        status_date: status['statusdate'],
+        start_date: status['statusdate'],
         status: status['status'],
         created: status['created']
       }

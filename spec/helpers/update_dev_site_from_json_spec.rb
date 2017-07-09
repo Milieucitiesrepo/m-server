@@ -78,7 +78,7 @@ describe UpdateDevSiteFromJson, type: :class do
       statuses_attributes: [
         {
           status: 'Application File Pending',
-          status_date: 'June 7, 2017'
+          start_date: 'June 7, 2017'
         }
       ],
       addresses_attributes: [
