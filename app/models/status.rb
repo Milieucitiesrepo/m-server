@@ -1,5 +1,6 @@
 class Status < ActiveRecord::Base
   scope :current, -> { order(start_date: :desc).first }
+  default_scope { order(start_date: :desc) }
   belongs_to :dev_site, foreign_key: 'dev_site_id'
   belongs_to :municipality, foreign_key: 'municipality_id'
   has_one :meeting, dependent: :destroy
@@ -32,17 +33,17 @@ class Status < ActiveRecord::Base
   ].freeze
 
   GENERAL_STATUS = {
-    'Active Development': [
+    'Active Development' => [
       'Application File Pending',
       'Application Reactivated'
     ],
-    'Comment Period': [
+    'Comment Period' => [
       'Comment Period in Progress',
       'Community \'Heads Up\' - Completed',
       'Community Information and Comment Session Held',
       'Notice of Public Meeting Sent'
     ],
-    'Comment Period Closed': [
+    'Comment Period Closed' => [
       'Agreement Package Received from Owner',
       'Agreement Signed',
       'Amendment Initiated',
@@ -100,9 +101,10 @@ class Status < ActiveRecord::Base
 
   def general_status
     GENERAL_STATUS.each do |key, array|
-      return key.to_s if GENERAL_STATUS[key].include? status
+      return key.to_s if array.include? status
     end
-    return 'Comment Period Closed'
+
+    'Comment Period Closed'
   end
 
   def friendly_status_date

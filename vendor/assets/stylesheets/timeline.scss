@@ -1,0 +1,130 @@
+.tl {
+  .checkoutwrap {
+    color: #444;
+    font-family: 'Avenir Next','Lato', sans-serif;
+    margin: 40px auto;
+    max-width: 700px;
+    position: relative;
+    border: 1px solid transparent;
+    padding-bottom: 45px;
+  }
+
+  ul.checkoutbar {
+    margin: 0 20px;
+    border: 1px solid #9CC6C5;
+    li {
+      color: #9B9B9B;
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 20px 14px 80px;
+      position: relative;
+      &:before {
+        background: #ddd;
+        border: 1px solid #9B9B9B;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        left: 20px;
+        line-height: 37px;
+        height: 8px;
+        position: absolute;
+        text-align: center;
+        top: 4px;
+        width: 10px;
+        z-index: 999;
+      }
+      &.active {
+        color: #9CC6C5;
+        font-weight: bold;
+        &:before {
+          z-index: 99999;
+        }
+      }
+      &.visited {
+        z-index: 99999;
+        &:before {
+          z-index: 99999;
+        }
+      }
+      &:nth-child(1):before, &:nth-child(2):before, &:nth-child(3):before, &:nth-child(4):before, &:nth-child(5):before, &:nth-child(6):before {
+        content: "";
+      }
+    }
+    a {
+      color: #9B9B9B;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  @media all and (min-width: 900px) {
+    .checkoutbar li.active:after {
+      -webkit-animation: myanimation 3s 0;
+      background-size: 35px 35px;
+      background-color: #9CC6C5;
+      content: "";
+      height: 8px;
+      width: 100%;
+      left: 48%;
+      position: absolute;
+      top: -50px;
+      z-index: 0;
+    }
+    .checkoutwrap {
+      margin: 50px 0;
+    }
+    ul.checkoutbar {
+      background-size: 35px 35px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      height: 10px;
+      margin: 0 auto;
+      padding: 0;
+      position: absolute;
+      width: 100%;
+      &:before {
+        background-size: 35px 35px;
+        background-color: #477393;
+        border-radius: 15px;
+        content: " ";
+        height: 8px;
+        left: 0;
+        position: absolute;
+        width: 10%;
+      }
+      li {
+        display: inline-block;
+        margin: 50px 0 0;
+        padding: 0;
+        text-align: center;
+        width: 19%;
+        &:before {
+          height: 8px;
+          left: 44%;
+          line-height: 45px;
+          position: absolute;
+          top: -50px;
+          width: 8px;
+          z-index: 99;
+        }
+        &.visited {
+          background: none;
+          &:after {
+            background-size: 35px 35px;
+            background-color: #477393;
+            content: "";
+            height: 8px;
+            left: 48%;
+            position: absolute;
+            top: -50px;
+            width: 100%;
+            z-index: 99;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,15 +1,15 @@
 a{
-  color: $black;
+  color: #477393;
   text-decoration: none;
   transition: opacity 250ms;
   cursor: pointer;
   background-color: inherit;
 
   &.btn {
-    color: $white !important;
+    color: #477393 !important;
   }
 
   &:visited {
-    color: $black;
+    color: #477393;
   }
 }

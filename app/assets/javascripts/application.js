@@ -19,6 +19,7 @@
 //= require velocity.min
 //= require velocity.uipack
 //= require cocoon
+//= require timeline
 
 //= require_tree .
 //= require_self

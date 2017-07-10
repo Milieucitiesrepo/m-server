@@ -65,7 +65,7 @@ class DevSite < ActiveRecord::Base
 
   def self.search(search_params)
     result = DevSite.joins(:ward, :municipality, :addresses).includes(:statuses, :comments)
-    result = result.where.not(municipalities: { name: 'Guelph' }) # remove when Guelph goes live
+
     result = location_search(result, search_params)
     result = filter(result, search_params)
     result
@@ -81,15 +81,22 @@ class DevSite < ActiveRecord::Base
     statuses.current.general_status
   end
 
+  def current_status
+    current = statuses.select do |status|
+      today = DateTime.current
+      (status.end_date.nil? && status.start_date < today) ||
+      (status.start_date < today && status.end_date > today)
+    end
+
+    current.first
+  end
+
   def status
-    return if statuses.empty?
-    statuses.current.status
+    current_status ? current_status.status : 'No status'
   end
 
   def status_date
-    return if statuses.empty?
-    return nil unless statuses.current.start_date
-    statuses.current.start_date.strftime('%B %e, %Y')
+    current_status ? current_status.start_date.strftime('%B %e, %Y') : ''
   end
 
   def valid_statuses

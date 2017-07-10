@@ -6,9 +6,10 @@
   top: 0;
   left: 0;
   padding: 0 20px;
-  box-shadow: 0 1px 5px #aaa;
+  border-bottom: 1px solid #979797;
   box-sizing: border-box;
   z-index: 100;
+  color: #9B9B9B;
 
   .fullPage {
     display: flex;
@@ -70,8 +71,9 @@
 
   .logo {
     img {
-      height: 25px;
-      width: 25px;
+      height: 35px;
+      width: 35px;
+      vertical-align: middle;
       object-fit: contain;
     }
   }
@@ -89,6 +91,7 @@
         cursor: pointer;
         align-items: center;
         vertical-align: middle;
+        font-weight: bold;
 
         &:hover {
           text-decoration: underline;
@@ -113,6 +116,7 @@
         line-height: 50px;
         font-size: 15px;
         cursor: pointer;
+        font-weight: bold;
       }
     }
   }

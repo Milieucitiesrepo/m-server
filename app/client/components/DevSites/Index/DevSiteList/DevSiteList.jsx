@@ -98,7 +98,7 @@ export default class DevSiteList extends Component {
                       <h3 className={css.address}>{devSite.street}</h3>
                       <div className={css.info}>{devSite.devID}</div>
                       <div className={css.info}>{replace(devSite.application_type_name, /coa/, 'Committee of Adjustment')}</div>
-                      <div className={css.info} dangerouslySetInnerHTML={{__html: devSite.status}}></div>
+                      <div className={css.info}>{devSite.status}</div>
                       <div className={css.description} dangerouslySetInnerHTML={{__html: devSite.description}}></div>
                     </div>
                   </a>
