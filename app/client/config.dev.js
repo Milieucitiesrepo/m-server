@@ -11,10 +11,9 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, "dist"),
-    filename: "[name].js",
-    publicPath: 'http://0.0.0.0:8080/',
-    chunkFilename: "[name].js"
+    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    filename: 'bundle.js',
+    publicPath: '/assets'
   },
 
   plugins: [
