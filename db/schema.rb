@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(version: 20170709173035) do
     t.datetime "active_at"
     t.string   "on_behalf_of"
     t.string   "urban_planner_name"
-    t.string   "url_full_notice"
     t.string   "short_description"
     t.string   "applicant_first_name"
     t.string   "applicant_last_name"
