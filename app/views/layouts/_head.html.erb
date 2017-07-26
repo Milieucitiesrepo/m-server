@@ -37,8 +37,9 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script type="text/javascript" src="/assets/dll/dll.vendor.js" ></script>
   <% if Rails.env.development? %>
-    <%= javascript_include_tag 'http://0.0.0.0:8080/bundle.js' %>
+    <script type="text/javascript" src="/assets/bundle.js" ></script>
   <% else %>
     <%= javascript_include_tag 'bundle' %>
   <% end %>
