@@ -1,7 +1,19 @@
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
+
+  root to: 'noumea#index'
+
+  namespace :pages, path: '/', as: nil do
+    get :utilisation
+    get :participez
+  end
+
+  namespace :pages, path: '/participez', as: nil do
+    get :survey
+    post :submit_survey
+  end
+
   scope '(:locale)', locale: /en|fr/ do
-    root to: 'dev_sites#index'
 
     namespace :pages, path: '/', as: nil do
       get :wakefield
@@ -73,6 +85,6 @@ Rails.application.routes.draw do
 
   mount Resque::Server, at: '/resque'
 
-  root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
-  get '*path' => redirect("/#{I18n.default_locale}", status: 302)
+  # root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
+  # get '*path' => redirect("/#{I18n.default_locale}", status: 302)
 end

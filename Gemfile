@@ -26,7 +26,7 @@ gem 'cancancan', '~> 1.15.0'
 gem 'geokit-rails'
 gem 'bcrypt', '~> 3.1.11'
 gem 'fog', '~> 1.38'
-gem 'rmagick', '~> 2.15.4', :require => 'RMagick'
+gem 'rmagick', '~> 2.15.4'
 gem 'simple_command'
 gem 'jwt'
 gem 'closure_tree', '~> 6.5.0'
@@ -78,6 +78,7 @@ end
 
 group :production, :staging do
   gem 'unicorn', '5.1.0'
+  gem 'puma'
 end
 
 ruby '2.3.0'

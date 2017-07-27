@@ -1,0 +1,390 @@
+
+.container {
+  padding-bottom: 0 !important;
+  font-family: AvenirNext, lato, sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: white; // we should set this color everywhere because we inherit some styles from the base of m-server
+    h1 {
+      color: $dark-primary-color;
+      font-weight: 800;
+      font-family: AvenirNext-bold, lato, sans-serif;
+      font-size: 3em;
+      text-align: center;
+
+      @media #{$medium-and-down} {
+        font-size: 2.5em;
+      }
+
+      @media #{$small-and-down}{
+        font-size: 2em;
+      }
+    }
+
+    h2 {
+      font-size: 2.25em;
+      font-weight: 700;
+      font-family: AvenirNext-bold, lato, sans-serif;
+      color: $dark-primary-color;
+      margin-top: 1em;
+      text-align: center;
+
+      @media #{$medium-and-down} {
+        font-size: 2em;
+      }
+
+      @media #{$small-and-down}{
+        font-size: 1.62em;
+      }
+    }
+
+    h3 {
+      font-size: 1.75em;
+      font-weight: 500;
+      color: $dark-primary-color;
+      margin-top: 1em;
+      text-align: center;
+
+      @media #{$medium-and-down} {
+        font-size: 1.5em;
+      }
+
+      @media #{$small-and-down}{
+        font-size: 1.375em;
+      }
+    }
+
+    p {
+      font-size:1em;
+      font-weight: 300;
+      margin-top: 1em;
+    }
+}
+
+
+.introContainer{
+  border-top: 1px solid $light-gray;
+  margin:0.5vh auto;
+  display: block;
+  align-self: center;
+
+  .description {
+    margin: 3em auto;
+
+ @media #{$medium-and-up} {
+   margin: 0 5vw;
+   display: block;
+   float: left;
+
+   h1 {
+     margin-top: 3em;
+   }
+   p {
+     max-width: 420px;
+   }
+ }
+  @media #{$medium-and-down} {
+      padding: 20px 50px;
+
+    }
+  @media #{$small-and-down} {
+    padding: 20px;
+  }
+  }
+
+  .videoContainer {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 0;
+    height: 0;
+
+    @media #{$medium-and-up} {
+      margin-top: 1.25em;
+    }
+  }
+
+  .videoContainer iframe {
+    position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+    border-color: white;
+    border: 0;
+  }
+
+}
+
+.visionContainer {
+  max-width: 1024px;
+
+  .introText {
+  h2{
+    text-align: center;
+  }
+  h3 {
+    text-align: center;
+  }
+  p {
+        margin-top: 1em;
+        font-size: 17px;
+  }
+    @media #{$large-and-up} {
+    display:block;
+    max-width: 900px;
+    top: 50%;
+    left: 50%;
+    margin-top: 100px;
+    margin-left: 550px;
+
+    p {
+      display: block;
+      margin: 1em auto;
+      font-size: 16px;
+    }
+    }
+    @media #{$medium-and-up} {
+      display: block;
+      max-width: 400px;
+
+      p {
+        display: block;
+        margin: 1em auto;
+      }
+    }
+    @media #{$medium-and-down} {
+        margin: 0 auto;
+        padding: 1em 4em;
+        float:left;
+        max-width: 400px;
+      }
+    @media #{$small-and-down} {
+      padding: 20px 40px;
+      margin: 0 auto;
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+  .themeContainer {
+    margin: 1em auto;
+
+    @media #{$large-and-up} {
+      max-width: 480px;
+      display: block;
+      }
+    @media #{$medium-and-up} {
+      max-width: 400px;
+      display: block;
+    }
+    @media #{$medium-and-down} {
+      display: inline-block;
+      }
+    h2 {
+       margin: 1em auto;
+       text-align: center;
+       color: white;
+     }
+    .theme {
+      background: $dark-primary-color; /* For browsers that do not support gradients */
+      background: -webkit-linear-gradient(45deg, #A8C0B2 0%, #477393 100%, #477393 100%); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(45deg, #A8C0B2 0%, #477393 100%, #477393 100%); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(45deg, #A8C0B2 0%, #477393 100%, #477393 100%); /* For Firefox 3.6 to 15 */
+      background: linear-gradient(45deg, #A8C0B2 0%, #477393 100%, #477393 100%); /* Standard syntax */
+
+      @media #{$large-and-up} {
+      margin: 2em auto;
+      float:left;
+      max-width: 420px;
+      display: block;
+    }
+      @media #{$medium-and-down} {
+      margin: 1em auto;
+      float:left;
+    }
+
+      @media #{$medium-and-up} {
+      margin: 1.5em auto;
+      float:left;
+      max-width: 320px;
+      display: block;
+    }
+      img {
+        display: block;
+        margin: 0 0 2em 0;
+        padding: 0 1em;
+        float: left;
+        box-sizing:inherit;
+
+        @media #{$medium-and-up} {
+          width: 420px;
+          margin: 1em auto;
+          }
+        @media #{$medium-and-down} {
+          width: 320px;
+          }
+        @media #{$small-and-down} {
+          width: 100vw;
+        }
+      }
+    }
+  }
+  }
+
+.aboutContainer {
+  display: block;
+  float: left;
+  width: 100%;
+
+  h2 {
+    margin: 2em auto;
+    text-align: center;
+  }
+  p {
+    border: 1px solid $dark-primary-color;
+    border-radius: 3px;
+    padding:0.5em;
+    max-width: 320px;
+  }
+
+  @media #{$medium-and-down} {
+    padding: 2em 50px;
+    }
+  @media #{$small-and-down} {
+    padding: 0 1em;
+
+  }
+  .timelineContainer {
+      img {
+      align-items: center;
+      margin-top: 1em;
+
+      @media #{$medium-and-up} {
+        width: 100%;
+      }
+      @media #{$medium-and-down} {
+        width: 420px;
+
+      }
+      @media #{$small-and-down} {
+        width: 300px;
+      }
+    }
+  }
+}
+.partnersContainer {
+  margin: 0.25em auto;
+
+  h2{
+    display: block;
+    margin-top: 2em;
+    text-align: center;
+    @media #{$medium-and-up} {
+      position:inherit;
+      height: auto;
+    }
+  }
+
+  .partnersLogoContainer {
+  border-top: 2 solid $dark-primary-color;
+  margin: 20px;
+  display: flex;
+
+  a {
+    padding: 10px;
+  }
+  a img:hover {
+    height: 60px;
+  }
+  a img {
+    height: 55px;
+    margin: 0 auto;
+    border: 0;
+  }
+  @media #{$large-and-up} {
+    max-width: 480px;
+    }
+  @media #{$medium-and-up} {
+    max-width: 400px;
+    }
+  @media #{$medium-and-down} {
+    max-width: 320px;
+    top: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+    a {
+      padding: 10px;
+    }
+    img{
+      padding-left: 10px;
+      margin-left: 5px;
+    }
+    a img {
+    height:50px;
+      }
+    }
+  @media #{$small-and-down} {
+    a {
+        padding: 10px;
+        top: 50%;
+        left: 50%;
+      }
+      img{
+        padding-left: 10px;
+        margin-left: 5px;
+      }
+    a img {
+    height:40px;
+      }
+  }
+  }
+}
+
+.logoContainer {
+  margin: 2em auto;
+  display: flex;
+  box-sizing: inherit;
+  top: 50%;
+  left: 50%;
+  margin-top: 100px;
+  margin-left: 300px;
+
+  a img:hover {
+    height: 110px;
+  }
+  a img {
+    height: 100px;
+    margin: 0 auto;
+    border: 0;
+  }
+  @media #{$large-and-up} {
+    max-width: 480px;
+    top: 50%;
+    left: 50%;
+    margin-top: 100px;
+    margin-left: 300px;
+    }
+  @media #{$medium-and-up} {
+    top: 30%;
+    margin-top: 100px;
+    margin-left: 20px;
+    }
+  @media #{$medium-and-down} {
+    max-width: 320px;
+    a img {
+    height:90px;
+      }
+    }
+  @media #{$small-and-down} {
+    max-width: 200px;
+    top: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+    a img {
+    height:75px;
+    width: 75px;
+    padding: 0;
+    margin: 0;
+      }
+  }
+}

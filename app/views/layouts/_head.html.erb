@@ -1,7 +1,6 @@
 <head>
   <title>MILIEU - Making Cities Feel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= favicon_link_tag "favicon.ico" %>
   <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXhT-axWl8t1uj1tQuQndjKoTKnkFzbpo&libraries=places"></script>
 
   <!-- Font Styles -->
@@ -40,7 +39,7 @@
   <% if Rails.env.development? %>
     <%= javascript_include_tag 'http://0.0.0.0:8080/bundle.js' %>
   <% else %>
-    <%= javascript_include_tag 'bundle' %>
+    <script type="text/javascript" src="/assets/bundle.js" ></script>
   <% end %>
   <meta name="turbolinks-cache-control" content="no-cache">
   <%= csrf_meta_tags %>

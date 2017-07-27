@@ -1,0 +1,54 @@
+.map{
+  height: 200px;
+  margin-bottom: 30px;
+}
+.icons{
+  display: inline-block;
+  float: left;
+}
+.question{
+  text-align: left;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.forms{
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 250px;
+  overflow-y: scroll;
+  @media #{$medium-and-up}{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    float: left;
+  }
+
+}
+.description{
+  padding-top: 20px;
+  text-align: left;
+}
+.notes{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.comments{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.colorCircle{
+  margin-left: 0px;
+}
+.circle {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.mapPc{
+  webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
+  -moz-transition: margin-top .5s ease-out;  /* FF4+ */
+  -ms-transition: margin-top .5s ease-out;  /* IE10? */
+  -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
+  transition: margin-top .5s ease-out;
+}

@@ -52,6 +52,12 @@ module.exports = {
         'sass-resources']
       },
       {
+        test: /\.less$/,
+        loaders: ['style-loader',
+        'css-loader',
+        'less-loader']
+      },
+      {
         test: /\.css$/,
         loaders: ['style',
         'css?modules&importLoaders=3&localIdentName=[name]-[local]-[hash:base64:5]']

@@ -11,7 +11,7 @@ import Sentiment from '../../Common/Sentiment/Sentiment'
 import i18n from './locale'
 import Chart from 'chart.js'
 import { ShareButtons, generateShareIcon } from 'react-share';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');

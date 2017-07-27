@@ -33,3 +33,5 @@ Makefile
 
 # Ignore public folder
 /public/assets
+
+redis-stable/

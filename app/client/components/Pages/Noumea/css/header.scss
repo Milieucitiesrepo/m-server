@@ -1,0 +1,30 @@
+.container {
+  border-bottom: 2px;
+  border-color: #6d9493;
+}
+
+a {
+
+  display: inline-flex !important;
+  padding: 0 100px !important;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px !important;
+  cursor: pointer;
+  align-items: center;
+  vertical-align: middle;
+  font-weight: 800 !important;
+  color: $dark-secondary-color !important;
+  background: linear-gradient(to left, #6d9493, #6d9493) no-repeat bottom center !important;
+  background-size: 0% 4px !important;
+  transition: 0.25s !important;
+  border-bottom: 200px;
+  @media #{$large-and-up} {
+    margin-left: 300px;
+  }
+
+  &:hover {
+    background-size: 50% 4px !important;
+  }
+
+}

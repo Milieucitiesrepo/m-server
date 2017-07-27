@@ -6,6 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = {
+  cache: true,
+  devtool: "eval",
   entry: {
     bundle: path.resolve(__dirname, 'index')
   },
@@ -15,8 +17,9 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "../assets/webpack"),
-    filename: "[name].js"
+    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    filename: 'bundle.js',
+    publicPath: '/assets'
   },
 
   plugins: [
@@ -30,7 +33,15 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
         ENV: JSON.stringify(ENV)
       }
-    })
+    }),
+    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   ],
 
   module: {
@@ -51,6 +62,12 @@ module.exports = {
         'css?modules&importLoaders=3&localIdentName=[name]-[local]-[hash:base64:5]',
         'sass',
         'sass-resources']
+      },
+      {
+        test: /\.less$/,
+        loaders: ['style-loader',
+        'css-loader',
+        'less-loader']
       },
       {
         test: /\.css$/,
