@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import SurveyIntro from './SurveyIntro'
+import css from './css/noumea.scss'
 import _ from 'lodash'
 import { RIETextArea } from 'riek'
 

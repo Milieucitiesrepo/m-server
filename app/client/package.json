@@ -5,8 +5,17 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run build:prod || npm run start:dev",
     "build:prod": "webpack --config webpack.prod.config.js",
+
     "start:dev": "webpack-dev-server --config webpack.dev.config.js --host 0.0.0.0 --hot --inline --history-api-fallback",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+    "clean": "rimraf dist",
+    "build:webpack": "webpack --config config.prod.js",
+    "build:dll": "webpack --config config.dll.js",
+    "build": "npm run clean && npm run build:dll && npm run build:webpack",
+    "start:dev": "webpack-dev-server --config webpack.dev.config.js --host 0.0.0.0 --hot --inline --history-api-fallback",
+    "start:prod": "npm run build:dll && webpack --config webpack.prod.config.js"
+
   },
   "repository": {
     "type": "git",
