@@ -5,7 +5,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run build:prod || npm run start:dev",
     "build:prod": "webpack --config webpack.prod.config.js",
-    "start:dev": "webpack-dev-server --config webpack.dev.config.js --host 0.0.0.0 --hot --inline --history-api-fallback",
+    "start:dev": "webpack-dev-server --config webpack.dev.config.js --host 0.0.0.0 --compress --hot --inline --history-api-fallback",
     "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
@@ -16,12 +16,12 @@
   "dependencies": {
     "antd": "^2.12.1",
     "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",
+    "babel-plugin-import": "^1.2.1",
     "babel-plugin-lodash": "^3.1.4",
     "babel-preset-react": "^6.24.1",
-    "babel-cli": "^6.24.1",
-    "babel-plugin-import": "^1.2.1",
     "big.js": "^3.1.3",
     "chart.js": "^2.3.0",
     "compile": "0.0.2",
@@ -46,6 +46,7 @@
     "react-collapsible": "^1.2.1",
     "react-datepicker": "^0.40.0",
     "react-dom": "^15.2.1",
+    "react-hot-loader": "^3.0.0-beta.7",
     "react-localization": "^0.0.8",
     "react-map-gl": {
       "dependencies": {

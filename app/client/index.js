@@ -15,7 +15,7 @@ import './components/Pages/Noumea/Noumea'
 import './components/Pages/Noumea/Utilisation'
 import './components/Pages/Noumea/Participez'
 import './components/Pages/Noumea/Survey'
-
+import 'react-hot-loader/patch'
 // import './components/Users/Show/Show'
 // import './components/Users/Edit/Edit'
 

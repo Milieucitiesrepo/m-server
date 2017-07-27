@@ -7,7 +7,7 @@ module.exports = {
   cache: true,
   devtool: "eval",
   entry: {
-    bundle: path.resolve(__dirname, 'index')
+    bundle: path.resolve(__dirname, 'index'),
   },
 
   resolve: {
@@ -29,7 +29,7 @@ module.exports = {
     // }),
     new webpack.optimize.DedupePlugin(), //dedupe similar code
     new webpack.optimize.UglifyJsPlugin(), //minify everything
-    new webpack.optimize.AggressiveMergingPlugin() //Merge chunks
+    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
   ],
 
   module: {
@@ -37,7 +37,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react&plugins[]=lodash'
+        loaders: ['react-hot-loader/webpack', 'babel-loader?presets[]=es2015&presets[]=react&plugins[]=lodash']
       },
       {
         test: /\.(json|geojson)$/,
