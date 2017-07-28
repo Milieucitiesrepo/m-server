@@ -1,12 +1,11 @@
 .container {
-  padding: 20px;
   max-width: 1170px;
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
 
   @media #{$large-and-up} {
-    width: 85%;
+    width: 100%;
   }
 }
 

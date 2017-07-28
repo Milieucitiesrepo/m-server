@@ -75,7 +75,9 @@ export default class DevSiteForm extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    const { locale } = document.body.dataset;
+    const { locale, userPrimaryOrganizationId } = document.body.dataset;
+    const redirectUrl = `/${locale}/organizations/${userPrimaryOrganizationId}/dev_sites`;
+
     let [url, type] = [`/dev_sites`, 'POST'];
 
     if(this.state.devSiteId) {
@@ -91,7 +93,7 @@ export default class DevSiteForm extends Component {
       data: new FormData(e.currentTarget),
       success: devSite => {
         window.flash('notice', 'Successfully saved!')
-        Turbolinks.visit(`/${locale}/dev_sites/${devSite.id}`);
+        Turbolinks.visit(redirectUrl);
       },
       error: error => {
         window.flash('alert', 'Failed to save!')

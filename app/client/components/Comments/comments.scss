@@ -13,7 +13,7 @@
 }
 
 @mixin secondary-emphasis {
-  color: $dark-primary-color;
+  color: $primary-color;
   font-weight: 400;
 }
 
@@ -44,7 +44,7 @@
 
     p {
       font-size: 14px;
-      color: $dark-primary-color;
+      color: $primary-color;
     }
   }
 }
@@ -110,7 +110,7 @@
   }
 
   .body {
-    color: $black;
+    color: $primary-color;
     max-height: 150px;
     overflow-y: hidden;
   }

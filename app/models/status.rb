@@ -103,6 +103,14 @@ class Status < ActiveRecord::Base
     DECISION_STATUS
   ].freeze
 
+  DEFAULT_STATUSES = [
+    APPLICATION_RECEIVED_STATUS,
+    APPLICATION_COMPLETE_STATUS,
+    PLANNING_REVIEW_STATUS,
+    REVISION_STATUS,
+    DECISION_STATUS
+  ].freeze
+
   def general_status
     GENERAL_STATUS.each do |key, array|
       return key.to_s if GENERAL_STATUS[key].include? status

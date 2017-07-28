@@ -12,7 +12,7 @@ import { DEFAULT_STATUS } from '../../Common/constants'
 export default class StatusForms extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedStatus: DEFAULT_STATUS };
+    this.state = { selectedStatus: this.props.status.status || DEFAULT_STATUS };
     this.handleUpdateStatus = (v) => this._handleUpdateStatus(v);
   }
 

@@ -13,9 +13,9 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 
 // Must match 'base/colorswatches'
 
-$light-primary-color: #D5FFFE;
-$primary-color: #92c7c6;
-$dark-primary-color: #6D9493;
+$light-primary-color: #E7EEE9;
+$primary-color: #477393;
+$dark-primary-color: #477393;
 
 $secondary-color: #5d9bc0;
 $dark-secondary-color: #3a7496;
@@ -38,3 +38,5 @@ $error: #c7817d;
 
 $black: #333;
 $white: #fff;
+
+$primary-font: 'Avenir Next', 'Lato', sans-serif;

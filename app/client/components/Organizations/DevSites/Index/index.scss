@@ -2,6 +2,7 @@
   margin: 20px 0;
   padding: 0 !important;
   display: flex;
+  flex-direction: column;
   position: relative;
 
   @media #{$small-and-down} {
@@ -18,13 +19,8 @@
   }
 
   .delete {
-    top: 10px;
-    z-index: 1;
-    left: 210px;
-    position: absolute;
-    opacity: 0;
-    background-color: $error !important;
-    transition: 200ms;
+    align-self: flex-end;
+    margin-right: 8px;
   }
 
   &:hover {
@@ -34,6 +30,7 @@
 
     .delete {
       opacity: 1;
+      text-decoration: underline;
     }
   }
 }

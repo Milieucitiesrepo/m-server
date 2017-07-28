@@ -1,3 +1,9 @@
 .container {
-  height: calc(75vh - 50px)
+  height: calc(100vh - 50px)
+}
+
+@media #{$medium-and-down} {
+  .container {
+    height: calc(75vh - 50px)
+  }
 }

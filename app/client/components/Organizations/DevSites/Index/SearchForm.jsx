@@ -43,7 +43,7 @@ export default class SearchForm extends Component {
           />
         </div>
         <div className='col s12 m12 l6'>
-          <input type="submit" value='Search' className="btn" />
+          <input type="submit" value='Search' className="btn submit" />
           <button className="btn cancel" onClick={this.clearSearch}>Clear search</button>
         </div>
       </form>
