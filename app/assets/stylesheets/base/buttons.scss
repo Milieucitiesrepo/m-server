@@ -1,21 +1,34 @@
 .btn {
-  display: inline-block;
-  padding: 10px 30px;
-  text-decoration: none;
-  border :none;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  border-radius: 2px;
-  transition: 200ms;
-  color: $white;
-  background-color: $primary-color;
-  box-sizing: border-box;
-  margin-right: 6px;
+    box-shadow: 1px 1px 2px 0px $primary-color;
+    background-color: $light-primary-color;
+    border-radius: 2px;
+    text-indent: 0;
+    border: 1px solid $light-primary-color;
+    display:inline-block;
+    color: $primary-color;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: $primary-font;
+    font-style: normal;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0 1.4em;
+    margin-right: 0.4em;
+
+  &:hover {
+    color: #5d9bc0;
+  }
+
+  &:active {
+    position:relative;
+    top:1px;
+  }
 
   &.transparent {
     background-color: transparent;
-    color: $dark-primary-color;
+
   }
 
   &.icon {
@@ -39,11 +52,28 @@
     text-align: center;
   }
 
-  &.cancel {
-    background-color: $error;
+  &.submit {
+    background-color: $primary-color;
+    border-color: $dark-primary-color;
+    box-shadow: none;
+    color: $white;
 
     &:hover{
-      background-color: $light-error;
+      color: $white;
+      background-color: $dark-primary-color;
+    }
+  }
+
+  &.cancel {
+    background-color: $white;
+    color: $dark-primary-color;
+    border-color: $dark-primary-color;
+    box-shadow: none;
+    font-weight: normal;
+
+    &:hover{
+      background-color: $pale-gray;
+      color: $dark-primary-color;
     }
   }
 
@@ -53,6 +83,6 @@
 
   &:hover {
     opacity: 0.8;
-    color: $white;
+    color: $secondary-color;
   }
 }

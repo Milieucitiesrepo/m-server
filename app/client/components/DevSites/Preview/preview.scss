@@ -1,8 +1,8 @@
 .container {
-  border-left: 1px solid #ddd;
+  border-left: 3px solid #A8C0B2;
   box-sizing: border-box;
-  font-family: 'Lato';
-  background-color: #f7f7f7;
+  font-family: 'Avenir Next','Lato',sans-serif;
+  background-color: #ffffff;
   width: 100%;
   height: calc(100vh - 50px);
   overflow-y: scroll;
@@ -16,7 +16,7 @@
   }
 
   .menu {
-    background-color: #6d9493;
+    background-color: #E7EEE9;
     height: 50px;
     width: 60%;
     position: fixed;
@@ -25,6 +25,10 @@
     @media #{$medium-and-down} {
       width: 100%;
     }
+  }
+
+  .tabs {
+    padding: 20px 0;
   }
 
   .expand {
@@ -64,12 +68,36 @@
   }
 
   .wrapper {
-    padding: 80px 50px 30px;
+    padding: 2em 2em;
+    margin-top: 50px;
     background-color: #fff;
 
     @media #{$small-and-down} {
       padding: 60px 20px 20px;
     }
+  }
+
+  h1 {
+    padding: 0 0.75rem;
+  }
+
+  h3 {
+    margin: 0.25rem 0;
+    font-weight: bold;
+  }
+
+  h3.status {
+    color: #5790b4;
+    padding: 0 0.75rem;
+  }
+
+  h3.description {
+    color: #5790b4;
+  }
+
+  h3.timelinehead {
+    color: #5790b4;
+    padding: 0.8em 0;
   }
 
   .title {
@@ -91,13 +119,14 @@
   }
 
   .image {
-    max-height: 400px;
-    width: 600px;
-    max-width: 100%;
+    height: 200px;
+    width: 100%;
+    max-height: 40vh;
+    border-radius: 3px;
     object-fit: cover;
-    display: block;
-    margin: 0 auto;
-    margin-top: 40px;
+    position: relative;
+    float: right;
+    text-align: right;
   }
 
   .interact {
@@ -107,10 +136,12 @@
   }
 
   .sharecontainer {
-    display: flex;
     width: 80px;
     justify-content: space-around;
     align-items: center;
+    font-weight: bold;
+    font-size: 0.6em;
+    color: #477393;
   }
 
   .likecontainer {
@@ -120,13 +151,19 @@
     align-items: center;
   }
 
+  .message {
+    width: 40px;
+    text-align: center;
+  }
+
   .share {
-    background: url('./icons/share.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 25px;
-    height: 25px;
-    display: block;
+    padding: 2px 0;
+    margin: 0;
+  }
+
+  .commentimage {
+    height: 38px;
+    border: 0;
   }
 
   .like {
@@ -363,12 +400,6 @@
     font-weight: 300;
   }
 
-  .image {
-    height: 175px;
-    object-fit: cover;
-    width: 100%;
-  }
-
   .content {
     box-sizing: border-box;
     padding: 20px;
@@ -484,3 +515,6 @@
     }
   }
 }
+
+
+

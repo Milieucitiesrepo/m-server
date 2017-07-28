@@ -89,7 +89,7 @@ export default class Header extends Component {
           !isMobile &&
           <div className={css.fullPage}>
             <a href={`/${locale}`} className={css.logo}>
-              <img src={require('./images/dark-logo.svg')} title={'Milieu\'s Logo'} />
+              <img src={require('./images/logo.png')} title={'Milieu\'s Logo'} />
             </a>
             <div className={css.linksAndLocale}>
               <div className={css.links}>

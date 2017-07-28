@@ -10,7 +10,6 @@ export default class Edit extends Component {
     super(props);
     const startDate = this.props.status ? this.props.status.start_date : null;
     const endDate = this.props.status ? this.props.status.end_date : null;
-    console.log('this.props.status', this.props.status)
 
 
     this.state = { startDate, endDate };
@@ -26,7 +25,6 @@ export default class Edit extends Component {
   }
 
   _handleStartDate(date) {
-    console.log(date)
     this.setState({ startDate: date });
   }
 

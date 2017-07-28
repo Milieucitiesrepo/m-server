@@ -1,0 +1,37 @@
+.cardContainer {
+  border-radius: 3px;
+  border: 1px solid $gray;
+  min-height: 160px;
+  margin-right: 8px;
+  padding: 8px;
+  cursor: pointer;
+
+  .cardContent {
+    display: flex;
+    align-items: center;
+    color: $primary-color;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .header {
+      font-weight: bold;
+      margin: 10px 0;
+
+      .address {
+        color: $black;
+      }
+    }
+
+    .image {
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+

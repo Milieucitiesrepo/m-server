@@ -24,6 +24,7 @@ const i18n = new LocalizedStrings({
     memberAdded: 'Member added',
     memberDeleted: 'Member deleted',
     memberNotDeleted: 'Unable to delete member',
+    addDevelopmentSite: 'Add Development Site',
   },
   fr: {
     organizations: 'Organisations',
@@ -48,6 +49,7 @@ const i18n = new LocalizedStrings({
     memberAdded: 'Member added',
     memberDeleted: 'Member deleted',
     memberNotDeleted: 'Unable to delete member',
+    addDevelopmentSite: 'Add Development Site',
   }
 });
 

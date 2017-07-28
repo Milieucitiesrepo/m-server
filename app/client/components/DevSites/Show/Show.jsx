@@ -5,6 +5,7 @@ import Header from '../../Layout/Header/Header'
 import Footer from '../../Layout/Footer/Footer'
 import Modal from '../../Utility/Modal/Modal'
 import Comments from '../../Comments/Comments'
+import CommentsSection from '../../Comments/CommentsSection'
 import Loader from '../../Common/Loader/Loader'
 import Sentiment from '../../Common/Sentiment/Sentiment'
 import i18n from './locale'
@@ -84,16 +85,21 @@ export default class DevSiteShow extends Component {
           {
             !loading &&
             <div>
+              <h3 className={css.status}>{latestStatus}</h3>
               <div>
-                <h3 className={css.status}>{latestStatus}</h3>
                   <div className='row'>
-                    <div className='col m12 s4'>
-                      <img src={devSite.image_url} className={css.image} />
+                    <div className='col m4 s12'>
                       <h3>{devSite.address}</h3>
                       {i18n.devId}: {devSite.devID} <br/>
-                      {devSite.application_type_name.replace(/coa/, 'Committee of Adjustment')} <br/>
-
-                      <div>
+                      {devSite.application_type_name === '/coa/' ?  devSite.application_type_name.replace(/coa/, 'Committee of Adjustment') : devSite.application_type_name = '' } <br/>
+                    </div>
+                    <div className='col m8 s12'>
+                      <img src={devSite.image_url} className={css.image} />
+                    </div>
+                  </div>
+                  <div className='row'>
+                    <div className='col m12 s12'>
+                      <div className={css.tabs}>
                           <Tabs>
                             <TabList>
                               <Tab>{i18n.description}</Tab>
@@ -106,6 +112,7 @@ export default class DevSiteShow extends Component {
                               <div dangerouslySetInnerHTML={{__html: devSite.description }}></div>
                             </TabPanel>
                             <TabPanel>
+                              <h3 className={css.description}>{i18n.attachments}</h3>
                               {
                                 (devSite.city_files.length > 0 || devSite.files.length > 0) &&
                                 <h3 className={css.description}>{i18n.file}</h3>
@@ -134,10 +141,10 @@ export default class DevSiteShow extends Component {
                               {
                                 devSite.statuses &&
                                 devSite.statuses.map((status, i) => {
-                                  if (status.notification && status.notification.filesuploader) {
+                                  if (status.filesuploader) {
                                     return(
                                       <div key={i}>
-                                        <a href={status.notification.filesuploader.url} target='_blank' className={css.filelink}>{status.notification.filesuploader.name}</a>
+                                        <a href={status.filesuploader.url} target='_blank' className={css.filelink}>{status.filesuploader.name}</a>
                                       </div>
                                     )
                                   }
@@ -146,65 +153,22 @@ export default class DevSiteShow extends Component {
                             </TabPanel>
                           </Tabs>
                      </div>
-                  <h3 className={css.timeline}>Project Timeline</h3>
                   </div>
-                  <div className='row'>
-                    <div className='col s6'>
-                      {i18n.appType}:
-                    </div>
-                    <div className='col s6'>
-                      {devSite.application_type_name.replace(/coa/, 'Committee of Adjustment')}
-                    </div>
-                  </div>
-                  <div className='row'>
-                    <div className='col s6'>
-                      {i18n.wardName}:
-                    </div>
-                    <div className='col s6'>
-                      {devSite.ward_name}
-                    </div>
-                  </div>
-
-                  <h3 style={{padding: '0 0.75rem'}}><b>{i18n.status}</b></h3>
-                  {
-                    devSite.statuses.map(status => {
-                      return(
-                        <div className='row' key={status.id}>
-                          <div className='col s12 m6'>{status.status}</div>
-                          <div className='col s12 m6'>{status.friendly_status_date}</div>
-                        </div>
-                      )
-                    })
-                  }
                 </div>
-              </div>
               <div className='row'>
                 <div className='col s12 m6'>
 
-                  {
-                    devSite.sentiment &&
-                    <h3><b>Sentiment</b></h3>
-                  }
-                  {
-                    devSite.sentiment &&
-                    <Sentiment
-                      anger={devSite.sentiment.anger}
-                      disgust={devSite.sentiment.disgust}
-                      fear={devSite.sentiment.fear}
-                      joy={devSite.sentiment.joy}
-                      sadness={devSite.sentiment.sadness}
-                      />
-                  }
-                </div>
-                <div className='col s12 m6'>
-                  <h3><b>{i18n.comments}</b></h3>
-
                   <Comments devSiteId={devSite.id} />
                 </div>
+
+                  <CommentsSection devSiteId={devSite.id} devSite={devSite} applicationType={devSite.application_type_name}/>
               </div>
             </div>
+          </div>
           }
         </div>
+
+
         {
           showModal &&
           <Modal parent={this}>
