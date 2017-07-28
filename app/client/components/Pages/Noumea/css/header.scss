@@ -21,6 +21,7 @@ a {
   border-bottom: 200px;
   @media #{$large-and-up} {
     margin-left: 300px;
+    display: table-cell !important;
   }
 
   &:hover {
