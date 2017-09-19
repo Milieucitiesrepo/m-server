@@ -273,6 +273,14 @@ export default class Map extends Component {
         this.parent.setState({ activeDevSiteId: feature.properties.id });
       }
     });
+    map.on('tap', e => {
+      const features = map.queryRenderedFeatures(e.point, { layers: ['unclustered-points'] });
+
+      if(features.length) {
+        const feature = features[0];
+        this.parent.setState({ activeDevSiteId: feature.properties.id });
+      }
+    });
   }
 
   render() {
