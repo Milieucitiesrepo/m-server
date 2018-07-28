@@ -11,6 +11,7 @@ import Loader from '../../Common/Loader/Loader'
 import Sentiment from '../../Common/Sentiment/Sentiment'
 import Chart from 'chart.js'
 import Tabs from '../Show/Tabs'
+import Timeline from '../Timeline/Timeline'
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
@@ -36,28 +37,15 @@ export default class extends Component {
     this.toggleLike = () => this._toggleLike();
     this.toggleFeatured = () => this._toggleFeatured();
     this.userAdmin = () => this._userAdmin();
-    this.loadTimeline = () => this._loadTimeline();
 
     if(!props.devSite) {
       this.loadDevSite();
     }
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.id !== this.props.id) this.loadDevSite();
     this.refs.container &&  this.refs.container.focus();
-
-    if (!this.state.loading) {
-      this.loadTimeline();
-    }
-  }
-
-  _loadTimeline() {
-    const { devSite } = this.state;
-    const currentStatus = devSite ? devSite.current_status : '';
-
-    $('.tl').timeline(currentStatus);
   }
 
   _loadDevSite() {
@@ -261,6 +249,11 @@ export default class extends Component {
                 { devSite.url_full_notice &&
                   <div><a href={devSite.url_full_notice} target='_top' className={css.button}> {i18n.linkToPlanningPage} </a></div>
                 }
+                {false &&
+                  <div >
+                    <a href="#" >Read official notice</a>
+                  </div>
+                }
               <div className='col m6 s12'>
 
                 <div className={css.icons}>{smallIcon}</div>
@@ -288,7 +281,9 @@ export default class extends Component {
 
             <div className='row'>
               <div className='col s12'>
-                <div className='tl'></div>
+                <Timeline
+                  devSite={devSite}
+                />
               </div>
             </div>
 

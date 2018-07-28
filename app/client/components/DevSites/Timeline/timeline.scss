@@ -1,5 +1,4 @@
-.tl {
-  .checkoutwrap {
+.checkoutwrap {
     color: #444;
     font-family: 'Avenir Next','Lato', sans-serif;
     margin: 20px auto;
@@ -7,6 +6,26 @@
     position: relative;
     border: 1px solid transparent;
     padding-bottom: 45px;
+  }
+
+  .tooltip {
+     background-color: white !important;
+     z-index: 10 !important;
+     border: 1px solid gray !important;
+     color: $dark-primary-color !important;
+     text-align: left !important;
+  }
+
+  .scheduled{
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .link{
+    margin-top: 5px;
+    a{
+      font-size: 12px;
+    }
   }
 
   ul.checkoutbar {
@@ -39,13 +58,7 @@
         width: 8px;
         z-index: $timeline-li-z;
       }
-      &.active {
-        color: #9CC6C5;
-        font-weight: bold;
-        &:before {
-          z-index: $timeline-li-active;
-        }
-      }
+
       &.visited {
         z-index: $timeline-li-active;
         &:before {
@@ -132,4 +145,3 @@
       }
     }
   }
-}
