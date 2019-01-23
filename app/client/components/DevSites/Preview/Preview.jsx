@@ -12,9 +12,10 @@ import Sentiment from '../../Common/Sentiment/Sentiment'
 import Chart from 'chart.js'
 import Tabs from '../Show/Tabs'
 
-const { FacebookShareButton, TwitterShareButton } = ShareButtons;
+const { FacebookShareButton, TwitterShareButton} = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
+
 
 const commentPeriod = <img src={require('../../../icons/in comment period.svg')} title='comment period' />;
 const archived = <img src={require('../../../icons/archived.svg')} title='archived' />;
@@ -37,6 +38,7 @@ export default class extends Component {
     this.toggleFeatured = () => this._toggleFeatured();
     this.userAdmin = () => this._userAdmin();
     this.loadTimeline = () => this._loadTimeline();
+    this.checkForSitePlanApplicationType = () => this._checkForSitePlanApplicationType();
 
     if(!props.devSite) {
       this.loadDevSite();
@@ -95,6 +97,14 @@ export default class extends Component {
         this.setState({ showModal: false });
       }
     });
+  }
+
+  _checkForSitePlanApplicationType() {
+    if (this.state.devSite) {
+      return this.state.devSite.application_files.some((file) => (
+        /Site Plan/.test(file.application_type)
+      ));
+    }
   }
 
   _toggleLike() {
@@ -157,6 +167,8 @@ export default class extends Component {
     const currentStatus = devSite ? devSite.current_status : '';
     i18n.setLanguage(locale);
     let smallIcon;
+    const showSitePlanText = this.checkForSitePlanApplicationType();
+
 
     switch(currentStatus) {
       case 'Application Received':
@@ -273,11 +285,35 @@ export default class extends Component {
                       </div>
                   ))
                 }
-                <h3>{i18n.status}:</h3>
-                <div className={css.description}>
-                  <strong>{currentStatus}</strong>
-                </div>
+                { showSitePlanText &&
+                  <div>
+                    <h3>{i18n.status}:</h3>
+                    <div className={css.description}>
+                      <strong>{currentStatus}</strong>
+                    </div>
+                  </div>
+                }
+                <div className={css.share} >
 
+                <FacebookShareButton
+                  url={devSite.url}
+                  picture={devSite.image_url}
+                  title="Check out this development on milieu"
+                  >
+                  <FacebookIcon
+                    size={32}
+                    round />
+                </FacebookShareButton>
+
+                <TwitterShareButton
+                  url={devSite.url}
+                  title="Check out this development on milieu">
+                  <TwitterIcon
+                    size={32}
+                    round />
+                </TwitterShareButton>
+
+                </div>
 
               </div>
 
@@ -302,7 +338,7 @@ export default class extends Component {
               </div>
             </div>
 
-            <CommentsSection devSite={devSite} devSiteId={devSite.id} />
+            <CommentsSection devSite={devSite} devSiteId={devSite.id} checkForSitePlanApplicationType={this.checkForSitePlanApplicationType} />
 
             {
               showModal &&
